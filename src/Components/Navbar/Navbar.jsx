@@ -1,21 +1,20 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router';
-// import Logo from '../Shared/Logo';
-// import useAuth from '../../Hooks/useAuth';
-// import toast from 'react-hot-toast';
+import useAuth from '../../Hooks/useAuth';
+import toast from 'react-hot-toast';
 // import "./Navbar.css";
 
 const Navbar = () => {
-    // const { user, logOut } = useAuth()
-    // const handelLogOut = () => {
-    //     logOut()
-    //         .then(result => {
-    //             toast.success("You Are SuccessFully Log Out")
-    //         })
-    //         .catch(err => {
-    //             console.log(err);
-    //         })
-    // }
+    const { user, logOut } = useAuth()
+    const handelLogOut = () => {
+        logOut()
+            .then(result => {
+                toast.success("You Are SuccessFully Log Out")
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
 
     return (
         <div>
@@ -59,7 +58,42 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end gap-2 ">
                     <Link to='/rider' className='btn rounded-lg bg-[#caeb66]'>Be A Rider</Link>
-               
+                    {
+                        user ? (
+                            <div className="dropdown dropdown-end">
+                                <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                                    <div className="w-10 rounded-full">
+                                        <img
+                                            src={user.photoURL || "https://i.ibb.co/4pDNDk1/avatar.png"}
+                                            alt="User"
+                                        />
+                                    </div>
+                                </label>
+
+                                <ul
+                                    tabIndex={0}
+                                    className="menu menu-sm dropdown-content bg-base-100 p-3 shadow rounded-xl w-52"
+                                >
+                                    <li className="font-semibold text-gray-700 px-3 py-2">
+                                        {user.displayName || "User"}
+                                    </li>
+                                    <li><Link to="/dashboard">Dashboard</Link></li>
+                                    <li><Link to="/user-profile">Profile</Link></li>
+
+                                    <li>
+                                        <button onClick={handelLogOut} className="text-red-500">
+                                            Log Out
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        ) : (
+                            <Link to="/login" className="btn rounded-lg bg-green-500 text-white hover:bg-green-600">
+                                Log In
+                            </Link>
+                        )
+                    }
+
 
 
                 </div>
