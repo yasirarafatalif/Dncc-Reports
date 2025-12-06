@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, NavLink } from 'react-router';
 import useAuth from '../../Hooks/useAuth';
 import toast from 'react-hot-toast';
-// import "./Navbar.css";
+import "./Navbar.css";
 
 const Navbar = () => {
     const { user, logOut } = useAuth()
@@ -33,7 +33,7 @@ const Navbar = () => {
                             <li> <NavLink to='/services'>Services</NavLink></li>
                             <li> <NavLink to='/about'>About</NavLink></li>
                             <li> <NavLink to='/blog'>Blog</NavLink></li>
-                            <li> <NavLink to='/send-percel'>Send A Percel</NavLink></li>
+                            <li> <NavLink to='/all-issues'>All Issues</NavLink></li>
                             <li> <NavLink to='/contact'>Contact</NavLink></li>
 
 
@@ -50,14 +50,14 @@ const Navbar = () => {
                         <li> <NavLink to='/services'>Services</NavLink></li>
                         <li> <NavLink to='/about'>About</NavLink></li>
                         <li> <NavLink to='/blog'>Blog</NavLink></li>
-                        <li> <NavLink to='/send-percel'>Send A Percel</NavLink></li>
+                        <li> <NavLink to='/all-issues'>All Issues</NavLink></li>
                         <li> <NavLink to='/contact'>Contact</NavLink></li>
 
 
                     </ul>
                 </div>
                 <div className="navbar-end gap-2 ">
-                    <Link to='/rider' className='btn rounded-lg bg-[#caeb66]'>Be A Rider</Link>
+                    {/* <Link to='/rider' className='btn rounded-lg bg-[#caeb66]'>Be A Rider</Link> */}
                     {
                         user ? (
                             <div className="dropdown dropdown-end">

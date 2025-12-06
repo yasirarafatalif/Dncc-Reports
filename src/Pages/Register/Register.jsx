@@ -7,7 +7,7 @@ import useAuth from '../../Hooks/useAuth';
 import SocialLogIn from '../SocialLogIn/SocialLogIn';
 // import axios from 'axios';
 // import useAxios from '../../Hooks/useAxios';
-// import SocialLogIn from '../SocialLogIn/SocialLogIn';
+
 
 const Register = () => {
     // const axiosSecure = useAxios();
@@ -38,15 +38,15 @@ const Register = () => {
                             createdAt: new Date(),
                             photoURl: photoURl,
                         }
-                        axiosSecure.post('/users', userInfoo)
-                            .then((res) => {
-                                if (res.data.insertedId) {
-                                    console.log('create file');
-                                }
-                            })
-                            .catch(err => {
-                                console.log(err);
-                            })
+                        // axiosSecure.post('/users', userInfoo)
+                        //     .then((res) => {
+                        //         if (res.data.insertedId) {
+                        //             console.log('create file');
+                        //         }
+                        //     })
+                        //     .catch(err => {
+                        //         console.log(err);
+                        //     })
                         updateUserProfile(data?.name, photoURl)
                             .then(() => {
 
@@ -68,8 +68,8 @@ const Register = () => {
         <div >
             <div className="w-full max-w-md">
                 {/* Heading */}
-                <h1 className="text-3xl font-bold mb-1">Welcome Back</h1>
-                <p className="text-gray-600 mb-6">Login with ZapShift</p>
+                <h1 className="text-3xl font-bold mb-1">You Are Welcome DNCC Website</h1>
+                <p className="text-gray-600 mb-6">Sing Up With DNCC</p>
 
                 {/* Email */}
                 <form onSubmit={handleSubmit(handeelRegister)} >
