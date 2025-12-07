@@ -1,10 +1,14 @@
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../Hooks/useAxios";
+import Swal from "sweetalert2";
+import useAuth from "../../Hooks/useAuth";
 
 const IssueDetails = () => {
   const { id } = useParams();
+  const {user}= useAuth();
+  const navigate = useNavigate()
   const axiosSecure = useAxios();
   const {data: issue}=useQuery({
     queryKey:['user-issue-detalis'],
@@ -13,16 +17,37 @@ const IssueDetails = () => {
       return res.data
     }
   })
-  console.log(issue);
-  // const [issue, setIssue] = useState(null);
 
-  // useEffect(() => {
-  //   axiosSecure.get(`/issue/${id}`)
-  //     .then(res => setIssue(res.data));
-  // }, [id]);
-  // console.log(issue);
 
   // if (!issue) return <p>Loading...</p>;
+
+      const handelDelete = (percel) => {
+          Swal.fire({
+              title: "Are you sure?",
+              text: "You won't be able to revert this!",
+              icon: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#3085d6",
+              cancelButtonColor: "#d33",
+              confirmButtonText: "Yes, delete it!"
+          }).then((result) => {
+              axiosSecure.delete(`/user/issue/${percel._id}?email=${user.email}`)
+                  .then(res => {
+                      if (res.data.result.deletedCount) {
+                          Swal.fire({
+                              position: "top-end",
+                              icon: "success",
+                              title: "Your Request has been deleted",
+                              showConfirmButton: false,
+                              timer: 1500
+                          });
+                          navigate('/')
+                      }
+                  })
+  
+          });
+      }
+  
 
   return (
     <div className="min-h-screen bg-gray-100 py-10 px-4 flex justify-center">
@@ -54,7 +79,9 @@ const IssueDetails = () => {
           }
           {
             issue?.status === "pending" && 
-             <button className="px-5 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">
+             <button
+             onClick={()=> handelDelete(issue)}
+             className="px-5 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">
               Delete Issue
             </button>
           }

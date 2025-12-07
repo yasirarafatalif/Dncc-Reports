@@ -12,7 +12,7 @@ const Navbar = () => {
                 toast.success("You Are SuccessFully Log Out")
             })
             .catch(err => {
-                console.log(err);
+                // console.log(err);
             })
     }
 
@@ -33,7 +33,7 @@ const Navbar = () => {
                             <li> <NavLink to='/submit-issue'>Submit Issue</NavLink></li>
                             <li> <NavLink to='/about'>About</NavLink></li>
                             <li> <NavLink to='/blog'>Blog</NavLink></li>
-                            <li> <NavLink to='/all-issues'>All Issues</NavLink></li>
+                            <li> <NavLink to='/all-issue'>All Issues</NavLink></li>
                             <li> <NavLink to='/contact'>Contact</NavLink></li>
 
 
@@ -50,7 +50,7 @@ const Navbar = () => {
                         <li> <NavLink to='/submit-issue'>Submit Issue</NavLink></li>
                         <li> <NavLink to='/about'>About</NavLink></li>
                         <li> <NavLink to='/blog'>Blog</NavLink></li>
-                        <li> <NavLink to='/all-issues'>All Issues</NavLink></li>
+                        <li> <NavLink to='/all-issue'>All Issues</NavLink></li>
                         <li> <NavLink to='/contact'>Contact</NavLink></li>
 
 

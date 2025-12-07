@@ -3,6 +3,7 @@ import useAxios from '../../../Hooks/useAxios';
 import { useQuery } from '@tanstack/react-query';
 import useAuth from '../../../Hooks/useAuth';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router';
 
 const UserIssue = () => {
 
@@ -94,11 +95,13 @@ const UserIssue = () => {
                                             Delete Issue
                                         </button>
 
+                                    <Link to={`/issue/${percel._id}`}>
+                                    
                                         <button
 
                                             className="btn btn-ghost mx-2 text-white bg-green-500 btn-xs">
                                             View Issue
-                                        </button>
+                                        </button></Link>
                                     </td>
                                 </tr>
                             ))
