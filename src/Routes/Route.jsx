@@ -11,8 +11,8 @@ import LogIn from './../Pages/LogIn/LogIn';
 import IssueDetails from "../Pages/UserIssuse/IssueDetails";
 import DashboardLayout from "../LayOuts/DashboardLayOut";
 import UserIssue from "../Pages/DashBoard/NormalUser/UserIssue";
-import AllIssue from "../Pages/AllIssue/AllIssue";
-
+import AllIssueCard from "../Pages/AllIssue/AllIssueCard";
+import ManageUsers from "../Pages/DashBoard/Admin/ManageUsers";
 
 export const router = createBrowserRouter([
    {
@@ -26,10 +26,8 @@ export const router = createBrowserRouter([
       {path: '/login' , Component: LogIn},
       {path: '/user-profile' , element: <PrivateRoute> <UserProfile></UserProfile></PrivateRoute>},
       {path: '/issue/:id' , element: <PrivateRoute> <IssueDetails></IssueDetails></PrivateRoute>},
-      // {path: '/issues/1' , element: <PrivateRoute> <IssueDetailsPreview></IssueDetailsPreview></PrivateRoute>},
-      // {path: '/issue/:id' , element: <PrivateRoute> <IssueDetailsPreview></IssueDetailsPreview></PrivateRoute>},
       {path: '/submit-issue' , element: <PrivateRoute><UserSubmitIssue></UserSubmitIssue> </PrivateRoute>},
-      {path: '/all-issue' , element: <PrivateRoute><AllIssue></AllIssue> </PrivateRoute>},
+      { path:'/all-issue', element:  < AllIssueCard></AllIssueCard>}
      
     ]
 
@@ -41,7 +39,8 @@ export const router = createBrowserRouter([
     <DashboardLayout></DashboardLayout>
   </PrivateRoute>,
   children:[
-    {path:'/dashboard/user-issue', Component: UserIssue}
+    {path:'/dashboard/user-issue', Component: UserIssue},
+    {path:'/dashboard/manage-user', Component: ManageUsers}
   ]
 }
 ])

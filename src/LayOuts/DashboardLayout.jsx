@@ -6,11 +6,12 @@ import { MdDirectionsBike } from "react-icons/md";
 
 import {  Bike, CreditCard, House,  } from 'lucide-react';
 // import useRole from '../Hooks/useRole';
-import { FaBoxOpen, FaUserMd } from 'react-icons/fa';
-import { CiSettings } from 'react-icons/ci';
+import { FaBoxOpen, FaHome, FaUserCog, FaUserMd } from 'react-icons/fa';
+import { CiCreditCard1, CiSettings } from 'react-icons/ci';
 import { RiEBikeFill } from "react-icons/ri";
 import { SiTask } from "react-icons/si";
 import { SiReacthookform } from "react-icons/si";
+import { IoIosAddCircleOutline } from 'react-icons/io';
 
 
 const DashboardLayout = () => {
@@ -47,14 +48,14 @@ const DashboardLayout = () => {
             <li>
               <Link to='/' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Homepage">
                 {/* Home icon */}
-                <House />
+               <FaHome />
                 <span className="is-drawer-close:hidden">Homepage</span>
               </Link>
             </li>
             <li>
               <Link to='/dashboard/payment-history' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Payment History">
                 {/* Home icon */}
-                <CreditCard />
+                <CiCreditCard1 />
                 <span className="is-drawer-close:hidden">Payment History</span>
               </Link>
             </li>
@@ -78,45 +79,24 @@ const DashboardLayout = () => {
                   My Issue</span>
               </Link>
             </li>
+            <li>
+              <Link to='/submit-issue' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Report Issue">
+                {/* Settings icon */}
+              <IoIosAddCircleOutline />
+                <span className="is-drawer-close:hidden">
 
+                  Report Issue</span>
+              </Link>
+            </li>
+            <li>
+              <Link to='/dashboard/manage-user' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Manage users">
+                {/* Settings icon */}
+              <FaUserCog />
+                <span className="is-drawer-close:hidden">
 
-            {/* admin only link  */}
-            {/* {
-              role.role === 'admin' && <>
-    
-                <li>
-                  <Link to='/dashboard/user-management' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="User Management">
-                   
-                    <FaUserMd/>
-                    <span className="is-drawer-close:hidden">
-
-                      User Management</span>
-                  </Link>
-                </li>
-
-               
-                <li>
-                  <Link to='/dashboard/rider-assign' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Rider Assign">
-                   
-                    <RiEBikeFill />
-                    <span className="is-drawer-close:hidden">
-
-                      Rider Assign</span>
-                  </Link>
-                </li>
-
-   
-                <li>
-                  <Link to='/dashboard/rider-status' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Rider Status">
-                   
-                    <MdDirectionsBike />
-
-                    <span className="is-drawer-close:hidden">Rider Status</span>
-                  </Link>
-                </li>
-              </>
-            } */}
-
+                  Manage users</span>
+              </Link>
+            </li>
 
 
             {/* rider only link  */}
