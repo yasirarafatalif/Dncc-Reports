@@ -10,6 +10,7 @@ import { FaBoxOpen, FaUserMd } from 'react-icons/fa';
 import { CiSettings } from 'react-icons/ci';
 import { RiEBikeFill } from "react-icons/ri";
 import { SiTask } from "react-icons/si";
+import { SiReacthookform } from "react-icons/si";
 
 
 const DashboardLayout = () => {
@@ -69,23 +70,23 @@ const DashboardLayout = () => {
 
             {/* Mypercel */}
             <li>
-              <Link to='/dashboard/mypercel' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Percel">
+              <Link to='/dashboard/user-issue' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Issue">
                 {/* Settings icon */}
-                <FaBoxOpen />
+               <SiReacthookform />
                 <span className="is-drawer-close:hidden">
 
-                  My Percel</span>
+                  My Issue</span>
               </Link>
             </li>
 
 
             {/* admin only link  */}
-            {
+            {/* {
               role.role === 'admin' && <>
-                {/* user management */}
+    
                 <li>
                   <Link to='/dashboard/user-management' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="User Management">
-                    {/* Settings icon */}
+                   
                     <FaUserMd/>
                     <span className="is-drawer-close:hidden">
 
@@ -93,10 +94,10 @@ const DashboardLayout = () => {
                   </Link>
                 </li>
 
-                {/* rider assign */}
+               
                 <li>
                   <Link to='/dashboard/rider-assign' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Rider Assign">
-                    {/* Settings icon */}
+                   
                     <RiEBikeFill />
                     <span className="is-drawer-close:hidden">
 
@@ -104,27 +105,27 @@ const DashboardLayout = () => {
                   </Link>
                 </li>
 
-                {/* Rider Status */}
+   
                 <li>
                   <Link to='/dashboard/rider-status' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Rider Status">
-                    {/* Settings icon */}
+                   
                     <MdDirectionsBike />
 
                     <span className="is-drawer-close:hidden">Rider Status</span>
                   </Link>
                 </li>
               </>
-            }
+            } */}
 
 
 
             {/* rider only link  */}
-            {
+            {/* {
               role.role === 'rider' && <>
-                {/* Rider Task */}
+               
             <li>
               <Link to='/dashboard/rider-task' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Rider Task">
-                {/* Settings icon */}
+              
                     <Bike />
                 <span className="is-drawer-close:hidden">
 
@@ -133,7 +134,7 @@ const DashboardLayout = () => {
             </li>
             <li>
               <Link to='/dashboard/rider-completed-task' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Rider Delivered Task">
-                {/* Settings icon */}
+                
                     <SiTask />
                 <span className="is-drawer-close:hidden">
 
@@ -141,7 +142,7 @@ const DashboardLayout = () => {
               </Link>
             </li>
               </>
-            }
+            } */}
 
           </ul>
         </div>

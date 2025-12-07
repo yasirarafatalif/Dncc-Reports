@@ -10,6 +10,7 @@ import UserSubmitIssue from "../Pages/UserIssuse/UserSubmitIssue";
 import LogIn from './../Pages/LogIn/LogIn';
 import IssueDetails from "../Pages/UserIssuse/IssueDetails";
 import DashboardLayout from "../LayOuts/DashboardLayOut";
+import UserIssue from "../Pages/DashBoard/NormalUser/UserIssue";
 
 
 export const router = createBrowserRouter([
@@ -38,7 +39,7 @@ export const router = createBrowserRouter([
     <DashboardLayout></DashboardLayout>
   </PrivateRoute>,
   children:[
-    // {path:'/'}
+    {path:'/dashboard/user-issue', Component: UserIssue}
   ]
 }
 ])
