@@ -13,6 +13,9 @@ import DashboardLayout from "../LayOuts/DashboardLayOut";
 import UserIssue from "../Pages/DashBoard/NormalUser/UserIssue";
 import AllIssueCard from "../Pages/AllIssue/AllIssueCard";
 import ManageUsers from "../Pages/DashBoard/Admin/ManageUsers";
+import AllIssueManage from "../Pages/DashBoard/Admin/AllIssueManage";
+import ManageStaff from "../Pages/DashBoard/Admin/ManageStaff";
+import ApplyStaff from "../Pages/DashBoard/Staff/ApplyStaff";
 
 export const router = createBrowserRouter([
    {
@@ -40,6 +43,9 @@ export const router = createBrowserRouter([
   </PrivateRoute>,
   children:[
     {path:'/dashboard/user-issue', Component: UserIssue},
+    {path:'/dashboard/admin-all-issue-manage', Component: AllIssueManage},
+    {path:'/dashboard/admin-all-manage-staff', Component: ManageStaff},
+    {path:'/dashboard/apply-staff', Component: ApplyStaff},
     {path:'/dashboard/manage-user', Component: ManageUsers}
   ]
 }

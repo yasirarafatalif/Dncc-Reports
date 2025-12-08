@@ -8,10 +8,11 @@ import {  Bike, CreditCard, House,  } from 'lucide-react';
 // import useRole from '../Hooks/useRole';
 import { FaBoxOpen, FaHome, FaUserCog, FaUserMd } from 'react-icons/fa';
 import { CiCreditCard1, CiSettings } from 'react-icons/ci';
-import { RiEBikeFill } from "react-icons/ri";
+import { RiEBikeFill, RiUserVoiceLine } from "react-icons/ri";
 import { SiTask } from "react-icons/si";
 import { SiReacthookform } from "react-icons/si";
 import { IoIosAddCircleOutline } from 'react-icons/io';
+import { FaHouseFlag, FaUsersGear } from 'react-icons/fa6';
 
 
 const DashboardLayout = () => {
@@ -95,6 +96,33 @@ const DashboardLayout = () => {
                 <span className="is-drawer-close:hidden">
 
                   Manage users</span>
+              </Link>
+            </li>
+            <li>
+              <Link to='/dashboard/admin-all-issue-manage' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="All Issue">
+                {/* Settings icon */}
+              <FaHouseFlag />
+                <span className="is-drawer-close:hidden">
+
+                  All Issue</span>
+              </Link>
+            </li>
+            <li>
+              <Link to='/dashboard/admin-all-manage-staff' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Manage Staff">
+                {/* Settings icon */}
+              <FaUsersGear />
+                <span className="is-drawer-close:hidden">
+
+                 Manage Staff</span>
+              </Link>
+            </li>
+            <li>
+              <Link to='/dashboard/apply-staff' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Apply For Staff">
+                {/* Settings icon */}
+              <RiUserVoiceLine />
+                <span className="is-drawer-close:hidden">
+
+                 Apply For Staff</span>
               </Link>
             </li>
 
