@@ -3,6 +3,7 @@ import useAuth from '../../../Hooks/useAuth';
 import { useNavigate } from 'react-router';
 import useAxios from '../../../Hooks/useAxios';
 import { useQuery } from '@tanstack/react-query';
+import Swal from 'sweetalert2';
 
 const ManageStaff = () => {
        const { user } = useAuth();
@@ -12,26 +13,24 @@ const ManageStaff = () => {
     const { data: citizen,refetch  } = useQuery({
         queryKey: ['staff_manage'],
         queryFn: async () => {
-            const res = await axiosSecure.get('/user/cityzen?role=citizen');
+            const res = await axiosSecure.get('/user/cityzen?staffStatus=pending');
+            console.log(res.data);
             return res.data;
         }
     });
 
-    const handelStatusUpdate=(p,status)=>{
-        const userInfoUpdate={
-            status: status
-        }
-        
-           Swal.fire({
+
+    const handelApproved=(item)=>{
+          Swal.fire({
                      title: "Are you sure?",
-                     text: `This Account ${p?.display_name} ${status} `,
+                     text: `${item?.display_name} Approved  `,
                      icon: "warning",
                      showCancelButton: true,
                      confirmButtonColor: "#3085d6",
                      cancelButtonColor: "#d33",
                      confirmButtonText: "Yes, delete it!"
                  }).then((result) => {
-                        axiosSecure.patch(`/user/${p._id}`,userInfoUpdate)
+                        axiosSecure.patch(`/staff/${item._id}?staffStatus=approved&role=Field Staff`)
                          .then(res => {
                              refetch()
                              if (res.data.modifiedCount) {
@@ -46,9 +45,6 @@ const ManageStaff = () => {
                          })
          
                  });
-        
-        
-
 
     }
     return (
@@ -62,6 +58,7 @@ const ManageStaff = () => {
                             <th>No:</th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Status</th>
                             <th>User Role</th>
                             <th>Action</th>
                         </tr>
@@ -73,27 +70,26 @@ const ManageStaff = () => {
                             <th>{i+1}</th>
                             <td>{c?.display_name}</td>
                             <td>{c?.email}</td>
+                            <td>{c?.staffStatus}</td>
                             <td>{c?.role}</td>
                             <td>
 
                                {
-                                c?.status==='unblock' &&
-                                 <button
-                                onClick={()=>handelStatusUpdate(c,'block')}
-
-                                    className="btn btn-ghost  mx-2 text-white bg-red-500 btn-md">
-                                   Block User
-                                </button> 
-                               }
-
-                               {
-                                c?.status==='block' &&
+                                c?.staffStatus==='pending' &&
                                   <button
-                                onClick={()=>handelStatusUpdate(c,'unblock')}
 
+                        
+                                    onClick={()=>handelApproved(c)}
                                     className="btn btn-ghost  text-white bg-green-500 btn-md">
-                                   Unblock User
+                                   Approved
                                 </button>
+                               }
+                               {
+                                c?.staffStatus==='approved' &&
+                                  <span
+                                    className=" text-green-500 btn-md">
+                                   Approved
+                                </span>
                                }
                                 
                             </td>

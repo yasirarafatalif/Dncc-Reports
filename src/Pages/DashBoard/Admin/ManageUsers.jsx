@@ -15,6 +15,7 @@ const ManageUsers = () => {
         queryKey: ['cityzen_manage'],
         queryFn: async () => {
             const res = await axiosSecure.get('/user/cityzen?role=citizen');
+            console.log(res.data);
             return res.data;
         }
     });
@@ -35,6 +36,7 @@ const ManageUsers = () => {
                  }).then((result) => {
                         axiosSecure.patch(`/user/${p._id}`,userInfoUpdate)
                          .then(res => {
+                            
                              refetch()
                              if (res.data.modifiedCount) {
                                  Swal.fire({
