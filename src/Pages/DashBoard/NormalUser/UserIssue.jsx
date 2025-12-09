@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useAxios from '../../../Hooks/useAxios';
 import { useQuery } from '@tanstack/react-query';
 import useAuth from '../../../Hooks/useAuth';
@@ -10,7 +10,7 @@ const UserIssue = () => {
     const axiosSecure = useAxios();
     const { user } = useAuth();
 
-    const { data: issue, refetch } = useQuery({
+    const { data: issue=[], refetch } = useQuery({
         queryKey: ['user-all-issue-details', user?.email],
         enabled: !!user?.email,
         queryFn: async () => {
@@ -18,6 +18,18 @@ const UserIssue = () => {
             return res.data;
         }
     });
+
+      const [statusFilter, setStatusFilter] = useState("");
+        const [priorityFilter, setPriorityFilter] = useState("");
+        const [searchText, setSearchText] = useState("");
+        const filteredData = issue.filter((item) => {
+            return (
+                (statusFilter === "" || item.status === statusFilter) &&
+                (priorityFilter === "" || item.priority === priorityFilter) &&
+                (searchText === "" || item.title.toLowerCase().includes(searchText.toLowerCase()))
+            );
+        });
+    
 
     const handelDelete = (percel) => {
 
@@ -53,6 +65,41 @@ const UserIssue = () => {
         <div className="p-5">
             <h2 className="text-2xl font-bold mb-4">My Submitted Issues</h2>
 
+
+             <div className="flex gap-4 mb-4">
+
+                {/* Status Filter */}
+                <select
+                    className="select select-bordered select-sm"
+                    onChange={(e) => setStatusFilter(e.target.value)}
+                >
+                    <option value="">All Status</option>
+                    <option value="assign_staff">Assigned</option>
+                    <option value="in-progress">In Progress</option>
+                    <option value="working">Working</option>
+                    <option value="resolved">Resolved</option>
+                    <option value="closed">Closed</option>
+                </select>
+
+                {/* Priority Filter */}
+                <select
+                    className="select select-bordered select-sm"
+                    onChange={(e) => setPriorityFilter(e.target.value)}
+                >
+                    <option value="">All Priority</option>
+                    <option value="high">High</option>
+                    <option value="normal">Normal</option>
+                </select>
+
+                {/* Search Title */}
+                <input
+                    type="text"
+                    placeholder="Search by title..."
+                    className="input input-bordered input-sm"
+                    onChange={(e) => setSearchText(e.target.value)}
+                />
+            </div>
+
             <div className="overflow-x-auto rounded-lg shadow-lg">
                 <table className="table">
                     <thead className="bg-gray-800 text-white">
@@ -68,7 +115,7 @@ const UserIssue = () => {
                     </thead>
 
                     <tbody>
-                        {issue?.map((percel, i) => (
+                        {filteredData?.map((percel, i) => (
                             <tr key={percel._id} className="bg-base-200 hover:bg-base-300 transition">
 
                                 <td>{i + 1}</td>

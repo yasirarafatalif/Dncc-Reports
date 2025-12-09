@@ -55,10 +55,6 @@ const AccepetIssue = () => {
 
     }
 
-
-
-
-
     const [statusFilter, setStatusFilter] = useState("");
     const [priorityFilter, setPriorityFilter] = useState("");
     const [searchText, setSearchText] = useState("");
