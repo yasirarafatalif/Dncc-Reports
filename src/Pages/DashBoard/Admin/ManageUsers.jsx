@@ -5,111 +5,127 @@ import useAxios from '../../../Hooks/useAxios';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 
-
 const ManageUsers = () => {
+
     const { user } = useAuth();
     const navigate = useNavigate();
     const axiosSecure = useAxios();
 
-    const { data: citizen,refetch  } = useQuery({
+    const { data: citizen, refetch } = useQuery({
         queryKey: ['cityzen_manage'],
         queryFn: async () => {
             const res = await axiosSecure.get('/user/cityzen?role=citizen');
-            console.log(res.data);
             return res.data;
         }
     });
 
-    const handelStatusUpdate=(p,status)=>{
-        const userInfoUpdate={
-            status: status
-        }
-        
-           Swal.fire({
-                     title: "Are you sure?",
-                     text: `This Account ${p?.display_name} ${status} `,
-                     icon: "warning",
-                     showCancelButton: true,
-                     confirmButtonColor: "#3085d6",
-                     cancelButtonColor: "#d33",
-                     confirmButtonText: "Yes, delete it!"
-                 }).then((result) => {
-                        axiosSecure.patch(`/user/${p._id}`,userInfoUpdate)
-                         .then(res => {
-                            
-                             refetch()
-                             if (res.data.modifiedCount) {
-                                 Swal.fire({
-                                     position: "top-end",
-                                     icon: "success",
-                                     title: "Your Request has been Update",
-                                     showConfirmButton: false,
-                                     timer: 1500
-                                 });
-                             }
-                         })
-         
-                 });
-        
-        
+    const handelStatusUpdate = (u, status) => {
+        const userInfoUpdate = { status };
 
+        Swal.fire({
+            title: "Are you sure?",
+            text: `Do you want to ${status} the user: ${u?.display_name}?`,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Confirm!"
+        }).then((result) => {
 
-    }
+            if (result.isConfirmed) {
+                axiosSecure.patch(`/user/${u._id}`, userInfoUpdate)
+                    .then(res => {
+                        if (res.data.modifiedCount) {
+
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: `User has been ${status}ed`,
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+
+                            refetch();
+                        }
+                    });
+            }
+
+        });
+    };
+
     return (
-        <div>
+        <div className="p-5">
+            <h2 className="text-2xl font-bold mb-4">Manage Citizens</h2>
 
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto rounded-lg shadow-lg">
                 <table className="table">
-                    {/* head */}
-                    <thead>
+                    <thead className="bg-gray-800 text-white">
                         <tr>
-                            <th>No:</th>
+                            <th>No</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>User Role</th>
-                            <th>Action</th>
+                            <th>Status</th>
+                            <th className="text-center">Action</th>
                         </tr>
                     </thead>
+
                     <tbody>
-                    {
-                        citizen?.map((c,i)=>( 
-                             <tr key={c._id}>
-                            <th>{i+1}</th>
-                            <td>{c?.display_name}</td>
-                            <td>{c?.email}</td>
-                            <td>{c?.role}</td>
-                            <td>
+                        {
+                            citizen?.map((c, i) => (
+                                <tr key={c._id} className="hover:bg-base-200 transition">
 
-                               {
-                                c?.status==='unblock' &&
-                                 <button
-                                onClick={()=>handelStatusUpdate(c,'block')}
+                                    <td>{i + 1}</td>
 
-                                    className="btn btn-ghost  mx-2 text-white bg-red-500 btn-md">
-                                   Block User
-                                </button> 
-                               }
+                                    <td className="font-semibold">{c?.display_name}</td>
 
-                               {
-                                c?.status==='block' &&
-                                  <button
-                                onClick={()=>handelStatusUpdate(c,'unblock')}
+                                    <td>{c?.email}</td>
 
-                                    className="btn btn-ghost  text-white bg-green-500 btn-md">
-                                   Unblock User
-                                </button>
-                               }
-                                
-                            </td>
-                        </tr>))
+                                    <td>
+                                        <span className="badge badge-info px-3 py-2 text-white">
+                                            {c?.role}
+                                        </span>
+                                    </td>
 
-                    }
+                                    {/* Status Badge */}
+                                    <td>
+                                        <span className={`badge px-3 py-2 text-white 
+                                            ${c?.status === 'block' ? 'badge-error' : 'badge-success'}
+                                        `}>
+                                            {c?.status}
+                                        </span>
+                                    </td>
 
+                                    <td className="flex gap-3">
+
+                                        {/* Block Button */}
+                                        {c?.status === 'unblock' && (
+                                            <button
+                                                onClick={() => handelStatusUpdate(c, 'block')}
+                                                className="btn btn-error btn-sm text-white"
+                                            >
+                                                Block
+                                            </button>
+                                        )}
+
+                                        {/* Unblock Button */}
+                                        {c?.status === 'block' && (
+                                            <button
+                                                onClick={() => handelStatusUpdate(c, 'unblock')}
+                                                className="btn btn-success btn-sm text-white"
+                                            >
+                                                Unblock
+                                            </button>
+                                        )}
+
+                                    </td>
+
+                                </tr>
+                            ))
+                        }
                     </tbody>
                 </table>
             </div>
-
-
         </div>
     );
 };

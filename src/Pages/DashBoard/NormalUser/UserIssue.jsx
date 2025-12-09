@@ -9,14 +9,15 @@ const UserIssue = () => {
 
     const axiosSecure = useAxios();
     const { user } = useAuth();
+
     const { data: issue, refetch } = useQuery({
-        queryKey: ['user-all-issue-detalis', user?.email],
+        queryKey: ['user-all-issue-details', user?.email],
         enabled: !!user?.email,
         queryFn: async () => {
-            const res = await axiosSecure.get(`/user/issue?email=${user.email}`)
-            return res.data
+            const res = await axiosSecure.get(`/user/issue?email=${user.email}`);
+            return res.data;
         }
-    })
+    });
 
     const handelDelete = (percel) => {
 
@@ -29,88 +30,96 @@ const UserIssue = () => {
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
-            axiosSecure.delete(`/user/issue/${percel._id}?email=${user.email}`)
-                .then(res => {
-                    refetch()
-                    if (res.data.result.deletedCount) {
-                        Swal.fire({
-                            position: "top-end",
-                            icon: "success",
-                            title: "Your Request has been deleted",
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-                    }
-                })
+            if (result.isConfirmed) {
 
+                axiosSecure.delete(`/user/issue/${percel._id}?email=${user.email}`)
+                    .then(res => {
+                        refetch();
+                        if (res.data.result.deletedCount) {
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "Issue Deleted Successfully",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
+                    });
+            }
         });
-    }
+    };
 
     return (
-        <div>
+        <div className="p-5">
+            <h2 className="text-2xl font-bold mb-4">My Submitted Issues</h2>
 
-
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto rounded-lg shadow-lg">
                 <table className="table">
-                    {/* head */}
-                    <thead>
+                    <thead className="bg-gray-800 text-white">
                         <tr>
                             <th>No</th>
-                            <th>Submited By</th>
+                            <th>Name</th>
                             <th>Email</th>
                             <th>Issue Title</th>
-                            <th>Issue Catagory</th>
-                            <th>Issue Priority</th>
-                            <th>Action</th>
+                            <th>Category</th>
+                            <th>Priority</th>
+                            <th className="text-center">Action</th>
                         </tr>
                     </thead>
+
                     <tbody>
-                        {
-                            issue?.map((percel, i) => (
-                                <tr key={percel._id} className="bg-base-200">
+                        {issue?.map((percel, i) => (
+                            <tr key={percel._id} className="bg-base-200 hover:bg-base-300 transition">
 
-                                    {/* Row Number */}
-                                    <th>{i + 1}</th>
-                                    <th>{percel?.name}</th>
+                                <td>{i + 1}</td>
 
-                                    {/* Issue Title */}
-                                    <td>{percel.title}</td>
+                                {/* Submitted By */}
+                                <td>{percel?.name}</td>
 
-                                    {/* Issue Category */}
-                                    <td>{percel.category}</td>
+                                {/* Email */}
+                                <td>{percel?.email}</td>
 
+                                {/* Issue Title */}
+                                <td className="font-semibold">{percel.title}</td>
 
+                                {/* Category */}
+                                <td>
+                                    <span className="badge badge-info px-3 py-2 text-white">
+                                        {percel.category}
+                                    </span>
+                                </td>
 
+                                {/* Priority */}
+                                <td>
+                                    <span className={`badge px-3 py-2 text-white 
+                                        ${percel.priority === "High" ? "badge-error" : "badge-success"}
+                                    `}>
+                                        {percel.priority}
+                                    </span>
+                                </td>
 
-                                    {/* Issue Status */}
-                                    <td>{percel.status}</td>
+                                {/* Action Buttons */}
+                                <td className="flex gap-2">
 
-                                    <td>{percel.priority}</td>
-
-                                    {/* Buttons */}
-                                    <td>
-                                        <button
-                                            onClick={() => handelDelete(percel)}
-                                            className="btn btn-ghost text-white bg-red-500 btn-xs">
-                                            Delete Issue
-                                        </button>
+                                    <button
+                                        onClick={() => handelDelete(percel)}
+                                        className="btn btn-error btn-xs text-white">
+                                        Delete
+                                    </button>
 
                                     <Link to={`/issue/${percel._id}`}>
-                                    
-                                        <button
+                                        <button className="btn btn-success btn-xs text-white">
+                                            View
+                                        </button>
+                                    </Link>
 
-                                            className="btn btn-ghost mx-2 text-white bg-green-500 btn-xs">
-                                            View Issue
-                                        </button></Link>
-                                    </td>
-                                </tr>
-                            ))
-                        }
-
+                                </td>
+                            </tr>
+                        ))}
                     </tbody>
+
                 </table>
             </div>
-
         </div>
     );
 };

@@ -16,6 +16,8 @@ import ManageUsers from "../Pages/DashBoard/Admin/ManageUsers";
 import AllIssueManage from "../Pages/DashBoard/Admin/AllIssueManage";
 import ManageStaff from "../Pages/DashBoard/Admin/ManageStaff";
 import ApplyStaff from "../Pages/DashBoard/Staff/ApplyStaff";
+import AccepetIssue from "../Pages/DashBoard/Staff/AccepetIssue";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
    {
@@ -43,10 +45,11 @@ export const router = createBrowserRouter([
   </PrivateRoute>,
   children:[
     {path:'/dashboard/user-issue', Component: UserIssue},
-    {path:'/dashboard/admin-all-issue-manage', Component: AllIssueManage},
-    {path:'/dashboard/admin-all-manage-staff', Component: ManageStaff},
+    {path:'/dashboard/admin-all-issue-manage', element: <AdminRoute> <AllIssueManage></AllIssueManage></AdminRoute>},
+    {path:'/dashboard/admin-all-manage-staff', element: <AdminRoute><ManageStaff></ManageStaff></AdminRoute>},
     {path:'/dashboard/apply-staff', Component: ApplyStaff},
-    {path:'/dashboard/manage-user', Component: ManageUsers}
+    {path:'/dashboard/staff-accept-issue', element: <AdminRoute><AccepetIssue></AccepetIssue></AdminRoute>},
+    {path:'/dashboard/manage-user', element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>}
   ]
 }
 ])

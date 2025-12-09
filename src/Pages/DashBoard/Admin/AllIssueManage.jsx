@@ -23,20 +23,51 @@ const AllIssueManage = () => {
     ];
     const axiosSecure = useAxios();
     const assignedStaff = useRef();
-     const [selectedpercel, setselectedpercel] = useState(null)
+    const [selectedpercel, setselectedpercel] = useState(null)
 
-    const { data: issue } = useQuery({
+    const { data: issue = [] } = useQuery({
         queryKey: ['all_issue'],
         queryFn: async () => {
             const res = await axiosSecure.get('/all-issue');
             return res.data;
         }
     });
+    const {
+        data: staffs = [],
+        isLoading: staffLoading,
+        refetch: staffRefetch,
+    } = useQuery({
+        queryKey: ["all_staff", "available"],
+        enabled: !!selectedpercel,
+        queryFn: async () => {
+            const res = await axiosSecure.get("/user/cityzen?staffStatus=approved");
+            return res.data;
+        },
+    });
 
-     const openAssignModal = percel => {
+    const openAssignModal = percel => {
         setselectedpercel(percel)
-        console.log(percel._id);
         assignedStaff.current.showModal()
+    }
+
+    const handelAssignStaff=(staff)=>{
+        
+        const updateInfo={
+            staffName: staff.display_name,
+            staffEmail: staff.email,
+            phoneNumber: staff.staffPhoneNUmbe || '0185188347',
+            staffId: staff._id
+        }
+        axiosSecure.patch(`/issue/${selectedpercel._id}`, updateInfo)
+        .then(res=>{
+            staffRefetch()
+            assignedStaff.current.close()
+            console.log(res.data);
+        })
+
+
+
+
     }
 
     return (
@@ -70,10 +101,10 @@ const AllIssueManage = () => {
                                 <td className="p-2">
                                     <span
                                         className={`px-2 py-1 rounded text-white text-xs ${item.status === "pending"
-                                                ? "bg-yellow-500"
-                                                : item.status === "approved"
-                                                    ? "bg-green-600"
-                                                    : "bg-red-600"
+                                            ? "bg-yellow-500"
+                                            : item.status === "approved"
+                                                ? "bg-green-600"
+                                                : "bg-red-600"
                                             }`}
                                     >
                                         {item.status}
@@ -84,8 +115,8 @@ const AllIssueManage = () => {
                                 <td className="p-2">
                                     <span
                                         className={`px-2 py-1 rounded text-white text-xs ${item.priority === "High"
-                                                ? "bg-red-600"
-                                                : "bg-blue-500"
+                                            ? "bg-red-600"
+                                            : "bg-blue-500"
                                             }`}
                                     >
                                         {item.priority}
@@ -105,16 +136,16 @@ const AllIssueManage = () => {
                                 <td className="p-2">
                                     {!item.assignedStaff ? (
                                         <button
-                                         onClick={()=>openAssignModal(item)}
-                                        className="px-3 py-1 bg-green-600 text-white rounded text-sm">
+                                            onClick={() => openAssignModal(item)}
+                                            className="px-3 py-1 bg-green-600 hover:cursor-pointer text-white rounded text-sm">
                                             Assign Staff
                                         </button>
                                     ) : (
                                         <button
-                                       
+
                                             className="px-3 py-1 bg-gray-400 text-white rounded text-sm"
                                             disabled
-                                           
+
                                         >
                                             Assigned
                                         </button>
@@ -128,11 +159,11 @@ const AllIssueManage = () => {
 
             {/* Open the modal using document.getElementById('ID').showModal() method */}
             {/* <button className="btn" onClick={() => document.getElementById('my_modal_5').showModal()}>open modal</button> */}
-        <dialog ref={assignedStaff} className="modal modal-bottom sm:modal-middle">
+            <dialog ref={assignedStaff} className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">
                     <h3 className="font-bold text-lg">
-                        Rider: 
-                        
+                        Rider:
+
                     </h3>
 
                     {/* Table */}
@@ -143,29 +174,30 @@ const AllIssueManage = () => {
                                     <th></th>
                                     <th>Name</th>
                                     <th>Work Status</th>
-                                    <th>Rider District</th>
+                                    <th>Email</th>
                                     <th>Assign Riders</th>
                                 </tr>
                             </thead>
 
                             <tbody>
-                                {/* {
-                                  assignRiders.map((r,i)=>   <tr  key={r._id} className="bg-base-200">
+                                {
+                                  staffs?.map((r,i)=> 
+                                    <tr  key={r._id} className="bg-base-200">
                                     <th>{i+1}</th>
-                                    <td>{r.name}</td>
-                                    <td>{r.workStatus}</td>
-                                    <td>{r.district}</td>
+                                    <td>{r.display_name}</td>
+                                    <td>{r.staffStatus}</td>
+                                    <td>{r?.email}</td>
                                     <td>
                                          <button
-                                        onClick={()=>handelAssignRider(r) }
-                                        className="btn btn-ghost bg-green-300 btn-xs">Assign Riders</button>
+                                        onClick={()=>handelAssignStaff(r) }
+                                        className="btn btn-ghost bg-green-300 btn-xs">Assign Staff</button>
                                     </td>
                                 </tr>)  
-                                } */}
-                             
+                                }
 
-                              
-                                
+
+
+
                             </tbody>
                         </table>
                     </div>

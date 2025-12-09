@@ -6,17 +6,18 @@ import { MdDirectionsBike } from "react-icons/md";
 
 import {  Bike, CreditCard, House,  } from 'lucide-react';
 // import useRole from '../Hooks/useRole';
-import { FaBoxOpen, FaHome, FaUserCog, FaUserMd } from 'react-icons/fa';
+import { FaBoxOpen, FaHome, FaUserCog, FaUserMd, FaWpforms } from 'react-icons/fa';
 import { CiCreditCard1, CiSettings } from 'react-icons/ci';
 import { RiEBikeFill, RiUserVoiceLine } from "react-icons/ri";
 import { SiTask } from "react-icons/si";
 import { SiReacthookform } from "react-icons/si";
 import { IoIosAddCircleOutline } from 'react-icons/io';
 import { FaHouseFlag, FaUsersGear } from 'react-icons/fa6';
+import useRole from '../Hooks/useRole';
 
 
 const DashboardLayout = () => {
-//   const { role } = useRole();
+  const { role } = useRole();
 
   return (
     <div className="drawer lg:drawer-open">
@@ -45,7 +46,7 @@ const DashboardLayout = () => {
         <div className="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-14 is-drawer-open:w-64">
           {/* Sidebar content here */}
           <ul className="menu w-full grow">
-            {/* List item */}
+
             <li>
               <Link to='/' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Homepage">
                 {/* Home icon */}
@@ -53,6 +54,23 @@ const DashboardLayout = () => {
                 <span className="is-drawer-close:hidden">Homepage</span>
               </Link>
             </li>
+
+
+            <li>
+              <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Settings">
+                {/* Settings icon */}
+                <CiSettings />
+                <span className="is-drawer-close:hidden">Settings</span>
+              </button>
+            </li>
+
+
+
+            {/* citizen only route*/}
+           {
+            role ==='citizen' &&
+            <>
+             
             <li>
               <Link to='/dashboard/payment-history' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Payment History">
                 {/* Home icon */}
@@ -62,14 +80,7 @@ const DashboardLayout = () => {
             </li>
 
             {/* List item */}
-            <li>
-              <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Settings">
-                {/* Settings icon */}
-                <CiSettings />
-                <span className="is-drawer-close:hidden">Settings</span>
-              </button>
-            </li>
-
+           
             {/* Mypercel */}
             <li>
               <Link to='/dashboard/user-issue' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Issue">
@@ -89,7 +100,44 @@ const DashboardLayout = () => {
                   Report Issue</span>
               </Link>
             </li>
+            </>
+           }
+
+             
+
+            
             <li>
+              <Link to='/dashboard/apply-staff' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Apply For Staff">
+                {/* Settings icon */}
+              <RiUserVoiceLine />
+                <span className="is-drawer-close:hidden">
+
+                 Apply For Staff</span>
+              </Link>
+            </li>
+           {
+            role ==='Field Staff' &&
+            <>
+               <li>
+              <Link to='/dashboard/staff-accept-issue' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Assign Issue">
+                {/* Settings icon */}
+              <FaWpforms />
+                <span className="is-drawer-close:hidden">
+
+                 Assign Issue</span>
+              </Link>
+            </li>
+            </>
+           }
+
+
+           {/* admin only route */}
+
+
+           {
+            role==='admin' &&
+            <>
+              <li>
               <Link to='/dashboard/manage-user' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Manage users">
                 {/* Settings icon */}
               <FaUserCog />
@@ -116,41 +164,8 @@ const DashboardLayout = () => {
                  Manage Staff</span>
               </Link>
             </li>
-            <li>
-              <Link to='/dashboard/apply-staff' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Apply For Staff">
-                {/* Settings icon */}
-              <RiUserVoiceLine />
-                <span className="is-drawer-close:hidden">
-
-                 Apply For Staff</span>
-              </Link>
-            </li>
-
-
-            {/* rider only link  */}
-            {/* {
-              role.role === 'rider' && <>
-               
-            <li>
-              <Link to='/dashboard/rider-task' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Rider Task">
-              
-                    <Bike />
-                <span className="is-drawer-close:hidden">
-
-                  Rider Task</span>
-              </Link>
-            </li>
-            <li>
-              <Link to='/dashboard/rider-completed-task' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Rider Delivered Task">
-                
-                    <SiTask />
-                <span className="is-drawer-close:hidden">
-
-                  Rider Delivered Task</span>
-              </Link>
-            </li>
-              </>
-            } */}
+            </>
+           }
 
           </ul>
         </div>

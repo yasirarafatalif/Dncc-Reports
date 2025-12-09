@@ -51,6 +51,14 @@ const UserSubmitIssue = () => {
     location: data.location,
     category: data.category,
     images: imageUrls,
+  timeline: [
+      {
+        status: "submitted",
+        message: `Issue submitted by ${user?.displayName}`,
+        updatedBy: user?.email,
+        dateTime: new Date()
+      }
+    ]
   };
 
   // Send to backend
