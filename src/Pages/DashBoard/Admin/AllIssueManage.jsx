@@ -25,7 +25,7 @@ const AllIssueManage = () => {
     const assignedStaff = useRef();
     const [selectedpercel, setselectedpercel] = useState(null)
 
-    const { data: issue = [] } = useQuery({
+    const { data: issue = [], refetch } = useQuery({
         queryKey: ['all_issue'],
         queryFn: async () => {
             const res = await axiosSecure.get('/all-issue');
@@ -60,15 +60,11 @@ const AllIssueManage = () => {
         }
         axiosSecure.patch(`/issue/${selectedpercel._id}`, updateInfo)
         .then(res=>{
-            staffRefetch()
+            refetch()
             assignedStaff.current.close()
-            console.log(res.data);
         })
-
-
-
-
     }
+
 
     return (
         <div className="bg-gray-100 p-6 min-h-screen">
@@ -125,8 +121,8 @@ const AllIssueManage = () => {
 
                                 {/* Assigned Staff */}
                                 <td className="p-2">
-                                    {item.assignedStaff ? (
-                                        <span className="font-medium">{item.assignedStaff}</span>
+                                    {item.staffName ? (
+                                        <span className="font-medium">{item.staffName}</span>
                                     ) : (
                                         <span className="text-gray-400 italic">Not Assigned</span>
                                     )}
@@ -134,7 +130,7 @@ const AllIssueManage = () => {
 
                                 {/* Assign Button */}
                                 <td className="p-2">
-                                    {!item.assignedStaff ? (
+                                    {!item.staffName ? (
                                         <button
                                             onClick={() => openAssignModal(item)}
                                             className="px-3 py-1 bg-green-600 hover:cursor-pointer text-white rounded text-sm">

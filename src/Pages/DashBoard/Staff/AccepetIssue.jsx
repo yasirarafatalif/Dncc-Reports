@@ -39,7 +39,6 @@ const AccepetIssue = () => {
                         axiosSecure
                             .patch(`/all-issue/${item._id}?status=${status}`,updateInfo)
                             .then((res) => {
-                                console.log(res.data);
                                 refetch();
                                 if (res.data.modifiedCount) {
                                     Swal.fire({
@@ -106,34 +105,19 @@ const AccepetIssue = () => {
 
                                 {/* Action Buttons */}
                                 <td className="flex gap-2">
-                                    {
-                                        percel?.status === 'pending' &&
-                                            <>
-                                        
-                                    <button
-                                        onClick={() => handelStatusApproved(percel,'assign_staff')}
-                                        className="btn btn-success btn-xs text-white">
-                                        Accepet
-                                    </button>
-                                    <button
-                                        onClick={() => handelStatusApproved(percel,'pending')}
-                                        className="btn btn-error btn-xs text-white">
-                                        Reject
-                                    </button>
-                                        </> 
-                                    }
-                                    {
-                                        percel?.status === 'assign_staff' &&
-                                            <>
-                                        
-                                    <button
-                                        onClick={() => handelStatusApproved(percel,'sloved')}
-                                        className="btn btn-success btn-xs text-white">
-                                        Sloved
-                                    </button>
-                        
-                                        </> 
-                                    }
+                                    <select
+                                        className="select select-bordered mx-2 select-sm"
+                                        defaultValue={percel.status}
+                                        onChange={(e) => handelStatusApproved(percel, e.target.value)}
+                                    >
+                                        <option disabled>Status</option>
+                                        <option disabled>pending</option>
+                                        <option value="assign_staff">Assigned</option>
+                                        <option value="in-progress">In Progress</option>
+                                        <option value="working">Working</option>
+                                        <option value="resolved">Resolved</option>
+                                        <option value="closed">Closed</option>
+                                    </select>
 
                                     <Link to={`/issue/${percel._id}`}>
                                         <button className="btn btn-success btn-xs text-white">

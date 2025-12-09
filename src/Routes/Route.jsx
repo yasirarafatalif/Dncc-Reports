@@ -18,6 +18,7 @@ import ManageStaff from "../Pages/DashBoard/Admin/ManageStaff";
 import ApplyStaff from "../Pages/DashBoard/Staff/ApplyStaff";
 import AccepetIssue from "../Pages/DashBoard/Staff/AccepetIssue";
 import AdminRoute from "./AdminRoute";
+import StaffRoute from "./StaffRoute";
 
 export const router = createBrowserRouter([
    {
@@ -48,7 +49,7 @@ export const router = createBrowserRouter([
     {path:'/dashboard/admin-all-issue-manage', element: <AdminRoute> <AllIssueManage></AllIssueManage></AdminRoute>},
     {path:'/dashboard/admin-all-manage-staff', element: <AdminRoute><ManageStaff></ManageStaff></AdminRoute>},
     {path:'/dashboard/apply-staff', Component: ApplyStaff},
-    {path:'/dashboard/staff-accept-issue', element: <AdminRoute><AccepetIssue></AccepetIssue></AdminRoute>},
+    {path:'/dashboard/staff-accept-issue', element: <StaffRoute><AccepetIssue></AccepetIssue></StaffRoute>},
     {path:'/dashboard/manage-user', element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>}
   ]
 }
