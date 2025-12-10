@@ -17,6 +17,7 @@ const IssueDetails = () => {
       return res.data;
     },
   });
+  console.log(issue);
 
   const handelDelete = (percel) => {
     Swal.fire({
@@ -44,7 +45,17 @@ const IssueDetails = () => {
         });
     });
   };
-
+  const handelPayment = async(percel)=>{
+    // console.log(percel);
+    const paymentInfo = {
+      percelName : percel.name,
+      customer_email: percel.email,
+      percelId: percel._id,
+      cost: 100
+    }
+    const res = await axiosSecure.post('/create-checkout-session', paymentInfo);
+   window.location.href = res.data.url;
+  }
   if (!issue) return <p className="text-center mt-20">Loading...</p>;
 
   return (
@@ -82,15 +93,23 @@ const IssueDetails = () => {
                 Edit Issue
               </button>
 
-              <button
+              {
+                issue?.payment_status!=="paid"&& <>
+                <button
                 onClick={() => handelDelete(issue)}
                 className="px-5 py-2 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-lg shadow hover:scale-105 transition">
                 Delete Issue
               </button>
 
-              <button className="px-5 py-2 bg-gradient-to-r from-yellow-400 to-orange-400 text-white rounded-lg shadow hover:scale-105 transition">
+              <button 
+              onClick={()=> handelPayment(issue)}
+              
+              className="px-5 py-2 bg-gradient-to-r from-yellow-400 to-orange-400 text-white rounded-lg shadow hover:scale-105 transition">
                 Boost Priority (100৳)
               </button>
+                
+                </>
+              }
             </>
           )}
 

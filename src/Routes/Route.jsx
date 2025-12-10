@@ -19,6 +19,7 @@ import ApplyStaff from "../Pages/DashBoard/Staff/ApplyStaff";
 import AccepetIssue from "../Pages/DashBoard/Staff/AccepetIssue";
 import AdminRoute from "./AdminRoute";
 import StaffRoute from "./StaffRoute";
+import IssueBostPayment from "../Pages/DashBoard/Payments/IssueBostPayment";
 
 export const router = createBrowserRouter([
    {
@@ -46,6 +47,7 @@ export const router = createBrowserRouter([
   </PrivateRoute>,
   children:[
     {path:'/dashboard/user-issue', Component: UserIssue},
+    {path:'/dashboard/payment-success', Component: IssueBostPayment},
     {path:'/dashboard/admin-all-issue-manage', element: <AdminRoute> <AllIssueManage></AllIssueManage></AdminRoute>},
     {path:'/dashboard/admin-all-manage-staff', element: <AdminRoute><ManageStaff></ManageStaff></AdminRoute>},
     {path:'/dashboard/apply-staff', Component: ApplyStaff},
