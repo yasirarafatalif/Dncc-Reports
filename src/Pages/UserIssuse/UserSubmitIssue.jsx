@@ -5,6 +5,8 @@ import useAuth from "../../Hooks/useAuth";
 import axios from 'axios';
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
+import Swal from "sweetalert2";
+import { useQuery } from "@tanstack/react-query";
 
 const UserSubmitIssue = () => {
   const {
@@ -16,63 +18,116 @@ const UserSubmitIssue = () => {
   const axiosSecure = useAxios()
   const { user } = useAuth();
   const navigate = useNavigate();
+  const { data: userInfo = {} } = useQuery({
+    queryKey: ["userIssue", user?.email],
+    enabled: !!user?.email,
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/users/${user?.email}`);
+      return res.data;
+    }
+  });
+
+  const handleSubmitClick = () => {
+    if (userInfo?.status === "block") {
+      Swal.fire({
+        icon: "error",
+        title: "You are blocked!",
+        text: "You cannot submit an issue.",
+        toast: true,
+        position: "top-end",
+        timer: 3000,
+        showConfirmButton: false,
+      });
+      return;
+    }
+  };
+
 
   const onSubmit = async (data) => {
 
-  // image validation
-  if (!data.images || data.images.length === 0) {
-    toast.error("At least 1 image required");
-    return;
-  }
-
-  if (data.images.length > 3) {
-    toast.error("Maximum 3 images allowed");
-    return;
-  }
-
-  const imageUrls = [];
-  const uploadURL = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_API_IMAGE_KEY}`;
-
-  // Loop
-  for (let img of data.images) {
-    const formData = new FormData();
-    formData.append("image", img);
-
-    const res = await axios.post(uploadURL, formData);
-    imageUrls.push(res?.data?.data?.display_url);
-  }
-
-  const userInfo = {
-    name: user?.displayName,
-    email: user?.email,
-    submitAt: new Date(),
-    title: data.title,
-    description: data.description,
-    location: data.location,
-    category: data.category,
-    images: imageUrls,
-  timeline: [
-      {
-        status: "submitted",
-        message: `Issue submitted by ${user?.displayName}`,
-        updatedBy: user?.email,
-        dateTime: new Date()
-      }
-    ]
-  };
-
-  // Send to backend
-  axiosSecure.post(`/issue`, userInfo).then((res) => {
-    if(res.data.insertedId){
-      toast.success("Issue submitted successfully!");
-      navigate(`/issue/${res.data.insertedId}`)
-
-
+    // image validation
+    if (!data.images || data.images.length === 0) {
+      toast.error("At least 1 image required");
+      return;
     }
-    reset();
-    
-  });
-};
+
+    if (data.images.length > 3) {
+      toast.error("Maximum 3 images allowed");
+      return;
+    }
+
+    const imageUrls = [];
+    const uploadURL = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_API_IMAGE_KEY}`;
+
+    // Loop
+    for (let img of data.images) {
+      const formData = new FormData();
+      formData.append("image", img);
+
+      const res = await axios.post(uploadURL, formData);
+      imageUrls.push(res?.data?.data?.display_url);
+    }
+
+    const userInfo = {
+      name: user?.displayName,
+      email: user?.email,
+      submitAt: new Date(),
+      title: data.title,
+      description: data.description,
+      location: data.location,
+      category: data.category,
+      images: imageUrls,
+      timeline: [
+        {
+          status: "submitted",
+          message: `Issue submitted by ${user?.displayName}`,
+          updatedBy: user?.email,
+          dateTime: new Date()
+        }
+      ]
+    };
+
+    // Send to backend
+    axiosSecure.post(`/issue`, userInfo)
+      .then((res) => {
+
+
+        // PREMIUM OR FREE USER SUCCESSFULLY CREATED ISSUE
+        if (res.data.insertedId) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Issue submitted successfully!",
+            showConfirmButton: false,
+            timer: 1500
+          });
+          // navigate to My Issues page
+          navigate(`/issue/${res.data.insertedId}`)
+          return;
+        }
+
+
+        // FREE USER LIMIT REACHED
+        if (res.data.subscriptionRequired) {
+          Swal.fire({
+            position: "top-end",
+            icon: "warning",
+            title: res.data.message,
+            showConfirmButton: true,
+            confirmButtonText: "Upgrade Now",
+          }).then(() => {
+            // Go to profile page for subscription
+            navigate('/user-profile');
+          });
+        }
+
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error("Something went wrong!");
+      });
+
+  };
 
 
 
@@ -179,12 +234,20 @@ const UserSubmitIssue = () => {
           </div>
 
           {/* SUBMIT BUTTON */}
-          <button
-            type="submit"
-            className="w-full py-3 text-white font-semibold bg-blue-600 rounded-lg hover:bg-blue-700 transition"
-          >
-            Submit Issue
-          </button>
+          {
+            userInfo.status === "block" ? <button
+              type="button"
+              onClick={handleSubmitClick}
+              className="w-full py-3 text-white font-semibold bg-blue-600 rounded-lg hover:bg-blue-700 transition"
+            >
+              Submit Issue
+            </button> : <button
+              type="submit"
+              className="w-full py-3 text-white font-semibold bg-blue-600 rounded-lg hover:bg-blue-700 transition"
+            >
+              Submit Issue
+            </button>
+          }
         </form>
       </div>
     </div>

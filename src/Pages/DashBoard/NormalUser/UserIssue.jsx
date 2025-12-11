@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import useAxios from '../../../Hooks/useAxios';
 import { useQuery } from '@tanstack/react-query';
 import useAuth from '../../../Hooks/useAuth';
@@ -9,8 +9,16 @@ const UserIssue = () => {
 
     const axiosSecure = useAxios();
     const { user } = useAuth();
+    const assignEdit = useRef();
+       // Refs for collecting updated values
+    const nameRef = useRef();
+    const emailRef = useRef();
+    const titleRef = useRef();
+    const descRef = useRef();
+    const categoryRef = useRef();
+    const [selectedpercel, setselectedpercel] = useState(null)
 
-    const { data: issue=[], refetch } = useQuery({
+    const { data: issue = [], refetch } = useQuery({
         queryKey: ['user-all-issue-details', user?.email],
         enabled: !!user?.email,
         queryFn: async () => {
@@ -19,17 +27,17 @@ const UserIssue = () => {
         }
     });
 
-      const [statusFilter, setStatusFilter] = useState("");
-        const [priorityFilter, setPriorityFilter] = useState("");
-        const [searchText, setSearchText] = useState("");
-        const filteredData = issue.filter((item) => {
-            return (
-                (statusFilter === "" || item.status === statusFilter) &&
-                (priorityFilter === "" || item.priority === priorityFilter) &&
-                (searchText === "" || item.title.toLowerCase().includes(searchText.toLowerCase()))
-            );
-        });
-    
+    const [statusFilter, setStatusFilter] = useState("");
+    const [priorityFilter, setPriorityFilter] = useState("");
+    const [searchText, setSearchText] = useState("");
+    const filteredData = issue.filter((item) => {
+        return (
+            (statusFilter === "" || item.status === statusFilter) &&
+            (priorityFilter === "" || item.priority === priorityFilter) &&
+            (searchText === "" || item.title.toLowerCase().includes(searchText.toLowerCase()))
+        );
+    });
+
 
     const handelDelete = (percel) => {
 
@@ -61,12 +69,67 @@ const UserIssue = () => {
         });
     };
 
+    const handelEdit = (percel) => {
+        setselectedpercel(percel)
+        assignEdit.current.showModal()
+    }
+    const handelUpdateIssue = async () => {
+
+
+           const updatedData = {
+            name: nameRef.current.value,
+            email: emailRef.current.value,
+            title: titleRef.current.value,
+            description: descRef.current.value,
+            category: categoryRef.current.value,
+        };
+        assignEdit.current.close();
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Do you want to update this issue?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes, update it!",
+            cancelButtonText: "Cancel",
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+
+                try {
+                    const res = await axiosSecure.patch(
+                        `/update-issue/${selectedpercel?._id}`,
+                       updatedData
+                    );
+
+                    if (res.data.modifiedCount > 0) {
+                        Swal.fire({
+                            title: "Updated!",
+                            text: "Issue has been updated",
+                            icon: "success",
+                            timer: 1500,
+                        });
+                        // Refetch data (if using React Query)
+                        refetch && refetch();
+                    }
+
+                } catch (error) {
+                    console.log(error);
+                    Swal.fire({
+                        title: "Error!",
+                        text: "Something went wrong!",
+                        icon: "error",
+                    });
+                }
+            }
+        });
+    };
+
+
     return (
         <div className="p-5">
             <h2 className="text-2xl font-bold mb-4">My Submitted Issues</h2>
 
 
-             <div className="flex gap-4 mb-4">
+            <div className="flex gap-4 mb-4">
 
                 {/* Status Filter */}
                 <select
@@ -149,12 +212,20 @@ const UserIssue = () => {
                                 <td className="flex gap-2">
 
                                     {
-                                        percel?.status ==='pending' && 
-                                        <button
-                                        onClick={() => handelDelete(percel)}
-                                        className="btn btn-error btn-xs text-white">
-                                        Delete
-                                    </button>
+                                        percel?.status === 'pending' &&
+                                        <>
+                                            <button
+                                                onClick={() => handelDelete(percel)}
+                                                className="btn btn-error btn-xs text-white">
+                                                Delete
+                                            </button>
+                                            <button
+                                                onClick={() => handelEdit(percel)}
+                                                className="btn btn-error btn-xs text-white">
+                                                Edit
+                                            </button>
+
+                                        </>
                                     }
 
                                     <Link to={`/issue/${percel._id}`}>
@@ -170,6 +241,91 @@ const UserIssue = () => {
 
                 </table>
             </div>
+
+                        {/* thsi id modal section */}
+            <dialog
+                ref={assignEdit}
+                className="modal modal-bottom sm:modal-middle"
+                key={selectedpercel?._id}
+            >
+                <div className="modal-box">
+                    <h3 className="font-bold text-lg">Assign Issue</h3>
+
+                    {/* Input Fields */}
+                    <div className="my-4 space-y-4">
+
+                        <div>
+                            <label className="block text-sm font-medium">Name</label>
+                            <input
+                                type="text"
+                                defaultValue={selectedpercel?.name}
+                                ref={nameRef}
+                                className="input input-bordered w-full mt-1"
+                            />
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium">Email</label>
+                            <input
+                                type="email"
+                                defaultValue={selectedpercel?.email}
+                                ref={emailRef}
+                                className="input input-bordered w-full mt-1"
+                            />
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium">Issue Title</label>
+                            <input
+                                type="text"
+                                defaultValue={selectedpercel?.title}
+                                ref={titleRef}
+                                className="input input-bordered w-full mt-1"
+                            />
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium">Description</label>
+                            <textarea
+                                defaultValue={selectedpercel?.description}
+                                ref={descRef}
+                                className="textarea textarea-bordered w-full"
+                            ></textarea>
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium">Category</label>
+                            <select
+                                defaultValue={selectedpercel?.category}
+                                ref={categoryRef}
+                                className="select select-bordered w-full mt-1"
+                            >
+                                <option value="" disabled>Select category</option>
+                                <option>Road Problem</option>
+                                <option>Water Leakage</option>
+                                <option>Garbage Overflow</option>
+                                <option>Street Light Issue</option>
+                                <option>Drainage Problem</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div className="modal-action">
+                        <button
+                            className="btn btn-primary"
+                            onClick={handelUpdateIssue}
+                        >
+                            Save
+                        </button>
+
+                        <form method="dialog">
+                            <button className="btn">Close</button>
+                        </form>
+                    </div>
+                </div>
+            </dialog>
+
         </div>
     );
 };

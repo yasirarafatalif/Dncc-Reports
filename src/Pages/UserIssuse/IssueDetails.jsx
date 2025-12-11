@@ -10,6 +10,31 @@ const IssueDetails = () => {
   const navigate = useNavigate();
   const axiosSecure = useAxios();
 
+
+   const { data: userInfo = {} } = useQuery({
+      queryKey: ["userIssue", user?.email],
+      enabled: !!user?.email,
+      queryFn: async () => {
+        const res = await axiosSecure.get(`/users/${user?.email}`);
+        return res.data;
+      }
+    });
+  
+    const handleSubmitClick = () => {
+      if (userInfo?.status === "block") {
+        Swal.fire({
+          icon: "error",
+          title: "You are blocked!",
+          text: "You cannot submit an issue.",
+          toast: true,
+          position: "top-end",
+          timer: 3000,
+          showConfirmButton: false,
+        });
+        return;
+      }
+    };
+
   const { data: issue } = useQuery({
     queryKey: ["user-issue-details"],
     queryFn: async () => {
@@ -17,7 +42,6 @@ const IssueDetails = () => {
       return res.data;
     },
   });
-  console.log(issue);
 
   const handelDelete = (percel) => {
     Swal.fire({
@@ -89,9 +113,17 @@ const IssueDetails = () => {
 
           {issue?.status === "pending" && (
             <>
-              <button className="px-5 py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg shadow hover:scale-105 transition">
+                
+             {
+            userInfo.status === "block" ?  <button
+            onClick={handleSubmitClick}
+            className="px-5 py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg shadow hover:scale-105 transition">
+                Edit Issue
+              </button>  :  <button className="px-5 py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg shadow hover:scale-105 transition">
                 Edit Issue
               </button>
+          }
+             
 
               {
                 issue?.payment_status!=="paid"&& <>
