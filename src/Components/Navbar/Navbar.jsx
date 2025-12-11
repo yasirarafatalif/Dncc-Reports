@@ -29,8 +29,6 @@ const Navbar = () => {
                             tabIndex="-1"
                             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
                             <li> <NavLink>Home</NavLink></li>
-                            <li> <NavLink to='/'>Home</NavLink></li>
-                            <li> <NavLink to='/submit-issue'>Submit Issue</NavLink></li>
                             <li> <NavLink to='/about'>About</NavLink></li>
                             <li> <NavLink to='/blog'>Blog</NavLink></li>
                             <li> <NavLink to='/all-issue'>All Issue</NavLink></li>
@@ -47,7 +45,7 @@ const Navbar = () => {
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu gap-2  text-gray-400 menu-horizontal px-1">
                         <li> <NavLink to='/'>Home</NavLink></li>
-                        <li> <NavLink to='/submit-issue'>Submit Issue</NavLink></li>
+                       
                         <li> <NavLink to='/about'>About</NavLink></li>
                         <li> <NavLink to='/blog'>Blog</NavLink></li>
                         <li> <NavLink to='/all-issue'>All Issue</NavLink></li>
