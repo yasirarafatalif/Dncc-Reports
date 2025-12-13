@@ -20,6 +20,8 @@ import AccepetIssue from "../Pages/DashBoard/Staff/AccepetIssue";
 import AdminRoute from "./AdminRoute";
 import StaffRoute from "./StaffRoute";
 import IssueBostPayment from "../Pages/DashBoard/Payments/IssueBostPayment";
+import UserSubcription from "../Pages/DashBoard/Payments/UserSubcription";
+import UserSubcriptionSuccess from "../Pages/DashBoard/Payments/UserSubcriptionSuccess";
 
 export const router = createBrowserRouter([
    {
@@ -48,7 +50,9 @@ export const router = createBrowserRouter([
   children:[
     {path:'/dashboard/user-issue', Component: UserIssue},
     {path:'/dashboard/payment-success', Component: IssueBostPayment},
+    {path:'/dashboard/user-subcription-payment-success', Component: UserSubcriptionSuccess},
     {path:'/dashboard/admin-all-issue-manage', element: <AdminRoute> <AllIssueManage></AllIssueManage></AdminRoute>},
+    {path:'/dashboard/user-subcription', element:  <UserSubcription></UserSubcription>},
     {path:'/dashboard/admin-all-manage-staff', element: <AdminRoute><ManageStaff></ManageStaff></AdminRoute>},
     {path:'/dashboard/apply-staff', Component: ApplyStaff},
     {path:'/dashboard/staff-accept-issue', element: <StaffRoute><AccepetIssue></AccepetIssue></StaffRoute>},

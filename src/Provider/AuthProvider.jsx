@@ -46,6 +46,15 @@ const AuthProvider = ({ children }) => {
     })
   }
 
+  const deleteUserProfile = () => {
+    return deleteUser(user).then(() => {
+      // User deleted.
+    }).catch((error) => {
+      // An error ocurred
+      // ...
+    });
+  }
+
   // onAuthStateChange
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async currentUser => {
