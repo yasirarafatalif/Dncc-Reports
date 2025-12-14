@@ -39,6 +39,7 @@ const AuthProvider = ({ children }) => {
     return signOut(auth)
   }
 
+
   const updateUserProfile = (name, photo) => {
     return updateProfile(auth.currentUser, {
       displayName: name,
@@ -46,14 +47,7 @@ const AuthProvider = ({ children }) => {
     })
   }
 
-  const deleteUserProfile = () => {
-    return deleteUser(user).then(() => {
-      // User deleted.
-    }).catch((error) => {
-      // An error ocurred
-      // ...
-    });
-  }
+ 
 
   // onAuthStateChange
   useEffect(() => {

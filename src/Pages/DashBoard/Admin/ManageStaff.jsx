@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import useAuth from '../../../Hooks/useAuth';
 import { useNavigate } from 'react-router';
 import useAxios from '../../../Hooks/useAxios';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
+import { CiCirclePlus } from 'react-icons/ci';
+import { useForm } from 'react-hook-form';
 
 const ManageStaff = () => {
-    const { user } = useAuth();
+    const { user,createUser, logOut } = useAuth();
     const navigate = useNavigate();
     const axiosSecure = useAxios();
 
@@ -46,10 +48,129 @@ const ManageStaff = () => {
             }
         });
     };
+    const addStaffRef = useRef();
+    const addStaffModalOpen=()=>{
+        addStaffRef.current.showModal()
+
+    }
+
+     const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data); 
+    console.log(data.email, data.password);
+    createUser(data.email,data.password)
+    .then(res=>{
+      // logOut()
+      form.reset();
+    addStaffRef.current.close();
+      
+        console.log(res.data);
+    })
+    // reset();
+    // addStaffRef.current.close();
+  };
 
     return (
         <div className="p-6 min-h-screen bg-gray-200">
-            <h2 className="text-xl font-bold mb-4">Manage Staff Requests</h2>
+
+      {/* MODAL */}
+      <dialog ref={addStaffRef} className="modal">
+        <div className="modal-box">
+          <h3 className="font-bold text-lg mb-4">Add New Staff</h3>
+
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
+
+            <input
+              className="input input-bordered w-full"
+              placeholder="Full Name"
+              {...register("name", { required: "Name is required" })}
+            />
+            {errors.name && (
+              <p className="text-red-500 text-sm">{errors.name.message}</p>
+            )}
+
+            <input
+              className="input input-bordered w-full"
+              placeholder="Email"
+              {...register("email", { required: "Email is required" })}
+            />
+            {errors.email && (
+              <p className="text-red-500 text-sm">{errors.email.message}</p>
+            )}
+
+            <input
+              className="input input-bordered w-full"
+              placeholder="Phone"
+              {...register("phone", { required: "Phone number is required" })}
+            />
+            {errors.phone && (
+              <p className="text-red-500 text-sm">{errors.phone.message}</p>
+            )}
+
+            <input
+              className="input input-bordered w-full"
+              placeholder="Photo URL"
+              {...register("photo")}
+            />
+
+            <input
+              type="password"
+              className="input input-bordered w-full"
+              placeholder="Password"
+              {...register("password", {
+                required: "Password is required",
+                minLength: {
+                  value: 6,
+                  message: "Password must be at least 6 characters",
+                },
+              })}
+            />
+            {errors.password && (
+              <p className="text-red-500 text-sm">
+                {errors.password.message}
+              </p>
+            )}
+
+            <div className="flex justify-end gap-2 pt-3">
+              <button
+                type="button"
+                onClick={() => addStaffRef.current.close()}
+                className="px-4 py-2 border rounded-lg"
+              >
+                Cancel
+              </button>
+
+              <button
+                type="submit"
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg"
+              >
+                Create Staff
+              </button>
+            </div>
+
+          </form>
+        </div>
+      </dialog>
+
+
+
+
+            <div className='flex justify-between'>
+                <h2 className="text-xl font-bold mb-4">Manage Staff Requests</h2>
+
+                <button 
+                onClick={()=>addStaffModalOpen()}
+                    className=" flex justify-between items-center gap-2 font-bold text-lg mb-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+                >
+                  <CiCirclePlus />  Add New Staff
+                </button>
+            </div>
 
             <div className="overflow-x-auto shadow-lg rounded-lg border border-gray-200">
                 <table className="table w-full">
@@ -140,6 +261,7 @@ const ManageStaff = () => {
                     </tbody>
                 </table>
             </div>
+
         </div>
     );
 };

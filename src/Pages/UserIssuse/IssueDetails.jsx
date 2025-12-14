@@ -70,7 +70,7 @@ const IssueDetails = () => {
     });
   };
   const handelPayment = async(percel)=>{
-    // console.log(percel);
+
     const paymentInfo = {
       percelName : percel.name,
       customer_email: percel.email,
@@ -80,6 +80,7 @@ const IssueDetails = () => {
     const res = await axiosSecure.post('/create-checkout-session', paymentInfo);
    window.location.href = res.data.url;
   }
+
   if (!issue) return <p className="text-center mt-20">Loading...</p>;
 
   return (
@@ -109,7 +110,9 @@ const IssueDetails = () => {
         </div>
 
         {/* -------- Buttons Section -------- */}
-        <div className="bg-white shadow-lg rounded-xl p-6 flex flex-wrap gap-4">
+       {
+        issue?.email=== user?.email &&
+         <div className="bg-white shadow-lg rounded-xl p-6 flex flex-wrap gap-4">
 
           {issue?.status === "pending" && (
             <>
@@ -151,11 +154,12 @@ const IssueDetails = () => {
             </button>
           )}
         </div>
+       }
 
         {/* -------- Staff Info Section -------- */}
         {issue?.status === "pending" ? (
           <div className="bg-white shadow-lg rounded-xl p-6 text-center text-gray-700">
-            <div>Your request is being reviewed...</div>
+            <div>Request has being reviewed...</div>
           </div>
         ) : (
           <div className="bg-white shadow-lg rounded-xl p-6">

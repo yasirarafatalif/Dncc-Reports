@@ -64,8 +64,11 @@ const ManageUsers = () => {
                             <th>No</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>User Role</th>
+                            
+                            <th>User Status</th>
+                            
                             <th>Status</th>
+                            <th>Subscription Info</th>
                             <th className="text-center">Action</th>
                         </tr>
                     </thead>
@@ -80,14 +83,21 @@ const ManageUsers = () => {
                                     <td className="font-semibold">{c?.display_name}</td>
 
                                     <td>{c?.email}</td>
-
+{/* 
                                     <td>
                                         <span className="badge badge-info px-3 py-2 text-white">
                                             {c?.role}
                                         </span>
-                                    </td>
+                                    </td> */}
 
                                     {/* Status Badge */}
+                                    <td>
+                                        <span className={`badge px-3 py-2 text-white 
+                                            ${c?.subscription === 'free' ? 'badge-error' : 'badge-success'}
+                                        `}>
+                                            {c?.subscription}
+                                        </span>
+                                    </td>
                                     <td>
                                         <span className={`badge px-3 py-2 text-white 
                                             ${c?.status === 'block' ? 'badge-error' : 'badge-success'}
@@ -95,6 +105,16 @@ const ManageUsers = () => {
                                             {c?.status}
                                         </span>
                                     </td>
+                                    <td>
+                                          {c?.subscription === 'premium' ?  <button
+                                                // onClick={() => handelStatusUpdate(c, 'unblock')}
+                                                className="btn btn-success btn-sm text-white"
+                                            >
+                                                Subscription Info
+                                            </button>:'Un Paid User'}
+                                        
+                                    </td>
+                                 
 
                                     <td className="flex gap-3">
 
@@ -117,6 +137,7 @@ const ManageUsers = () => {
                                                 Unblock
                                             </button>
                                         )}
+                                      
 
                                     </td>
 

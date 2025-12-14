@@ -8,17 +8,52 @@ const IssueBostPayment = () => {
   const sessionId = searchParams.get("session_id");
   const [loading, setLoading] = useState(true);
   const axiosSecure = useAxios();
+  const [userData, setUserData] = useState([])
+  const [status, setStatus] = useState('loading');
+  console.log(userData);
 
-  useEffect(() => {
-    setTimeout(() => setLoading(false), 800);
-    if(sessionId){
-        axiosSecure.patch(`/verify-payment-success?session_id=${sessionId}`)
-        .then(res=>{
-            console.log(res.data);
-        })
+  // useEffect(() => {
+  //   setTimeout(() => setLoading(false), 800);
+  //   if(sessionId){
+  //       axiosSecure.patch(`/verify-payment-success?session_id=${sessionId}`)
+  //       .then(res=>{
+  //           console.log(res.data);
+  //       })
 
-    }
-  }, [sessionId]);
+  //   }
+  // }, [sessionId]);
+
+
+
+     const res=async(id)=>{
+             if (!sessionId) {
+              setStatus('failed');
+              return;
+          }
+  
+           await axiosSecure.get(`/verify-session?session_id=${sessionId}`)
+              .then(res => {
+                  setUserData(res.data)
+              })
+          await axiosSecure
+  .patch(`/verify-payment-success?session_id=${sessionId}`)
+              .then(res => {
+                setLoading(false)
+                  console.log("Payment verified", res.data);
+              })
+              .catch(err => {
+                  console.error(err);
+              });
+      }
+  
+  
+      useEffect(() => {
+          console.log(sessionId);
+          res(sessionId)
+  
+      }, [sessionId]);
+  
+  
 
   if (loading) {
     return (
@@ -53,7 +88,7 @@ const IssueBostPayment = () => {
         </h1>
 
         <p className="text-gray-600 mb-4">
-          আপনার পেমেন্ট সফলভাবে সম্পন্ন হয়েছে।
+          You Are SuccessFully Payment
         </p>
 
         {sessionId && (

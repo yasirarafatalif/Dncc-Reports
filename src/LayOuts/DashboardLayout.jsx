@@ -146,6 +146,15 @@ const DashboardLayout = () => {
                   Manage users</span>
               </Link>
             </li>
+              <li>
+              <Link to='/dashboard/all-payments-info' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Payments Info">
+                {/* Settings icon */}
+              <CiCreditCard1 />
+                <span className="is-drawer-close:hidden">
+
+                  Payments Info</span>
+              </Link>
+            </li>
             <li>
               <Link to='/dashboard/admin-all-issue-manage' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="All Issue">
                 {/* Settings icon */}

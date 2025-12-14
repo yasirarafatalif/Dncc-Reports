@@ -85,7 +85,7 @@ const AccepetIssue = () => {
                     <option value="in-progress">In Progress</option>
                     <option value="working">Working</option>
                     <option value="resolved">Resolved</option>
-                    <option value="closed">Closed</option>
+                    {/* <option value="closed">Closed</option> */}
                 </select>
 
                 {/* Priority Filter */}
@@ -160,18 +160,14 @@ const AccepetIssue = () => {
                                 {/* Action Buttons */}
                                 <td className="flex gap-2">
                                     {
-                                        percel.status ==="closed" ? <select
+                                        percel.status ==="resolved" ? <select
                                         className="select select-bordered mx-2 select-sm"
                                         defaultValue={percel.status}
                                         disabled
                                         onChange={(e) => handelStatusApproved(percel, e.target.value)}
                                     >
                                         <option disabled>Status</option>
-                                        <option disabled>pending</option>
-                                        <option value="assign_staff">Assigned</option>
-                                        <option value="in-progress">In Progress</option>
-                                        <option value="working">Working</option>
-                                        <option value="resolved">Resolved</option>
+                                        
                                         <option value="closed">Closed</option>
                                     </select>:  <select
                                         className="select select-bordered mx-2 select-sm"
@@ -184,7 +180,7 @@ const AccepetIssue = () => {
                                         <option value="in-progress">In Progress</option>
                                         <option value="working">Working</option>
                                         <option value="resolved">Resolved</option>
-                                        <option value="closed">Closed</option>
+                                        {/* <option value="closed">Closed</option> */}
                                     </select>
                                         
                                     }

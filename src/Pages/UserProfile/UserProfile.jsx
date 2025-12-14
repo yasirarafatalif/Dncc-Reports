@@ -89,13 +89,8 @@ const UserProfile = () => {
         axiosSecure.delete(`/users/${userInfo?.email}`)
             .then(res => {
 
-                deleteUser(user).then(() => {
-                    // User deleted.
-                }).catch((error) => {
-                    // An error ocurred
-                    // ...
-                });
-                if (res.data.deletedCount > 0) {
+                deleteUser(user).then((ress) => {
+                    if (res.data.deletedCount > 0) {
                     Swal.fire({
                         title: "Delete!",
                         text: "Profile Deleted successfully!",
@@ -105,6 +100,11 @@ const UserProfile = () => {
                     });
                     navigate('/login')
                 }
+                }).catch((error) => {
+                    // An error ocurred
+                    // ...
+                });
+                
             })
 
     }

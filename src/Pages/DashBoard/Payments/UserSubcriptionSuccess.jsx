@@ -3,34 +3,61 @@ import { useSearchParams } from 'react-router';
 import useAxios from '../../../Hooks/useAxios';
 
 const UserSubcriptionSuccess = () => {
-     const [searchParams] = useSearchParams();
-  const sessionId = searchParams.get("session_id");
-  const [loading, setLoading] = useState(true);
-  const [status, setStatus] = useState('loading');
-  const axiosSecure = useAxios();
-  const [userData, setUserData]= useState([])
+    const [searchParams] = useSearchParams();
+    const sessionId = searchParams.get("session_id");
+    const [loading, setLoading] = useState(true);
+    const [status, setStatus] = useState('loading');
+    const axiosSecure = useAxios();
+    const [userData, setUserData] = useState([])
+    const [verified, setVerified] = useState(false);
 
-  useEffect(() => {
-    if (!sessionId) {
-      setStatus('failed');
-      return;
+    // useEffect(() => {
+    //   if (!sessionId || verified) return;
+
+    //   setVerified(true);
+
+    //   axiosSecure
+    //     .patch(`/verify-user-payment-success?session_id=${sessionId}`)
+    //     .then(res => {
+    //       console.log("Payment verified", res.data);
+    //     })
+    //     .catch(err => {
+    //       console.error(err);
+    //     });
+
+    // }, [sessionId, verified]);
+
+    const res=async(id)=>{
+           if (!sessionId) {
+            setStatus('failed');
+            return;
+        }
+
+         await axiosSecure.get(`/verify-session?session_id=${sessionId}`)
+            .then(res => {
+                setUserData(res.data)
+            })
+        await axiosSecure
+.patch(`/verify-user-payment-success?session_id=${sessionId}`)
+            .then(res => {
+                console.log("Payment verified", res.data);
+            })
+            .catch(err => {
+                console.error(err);
+            });
     }
 
-    axiosSecure.get(`/verify-session?session_id=${sessionId}`)
-    .then(res=>{
-        setUserData(res.data)
-    })
 
-    axiosSecure.patch(`/verify-user-payment-success?session_id=${sessionId}`)
-    .then(res=>{
-       
-    })
+    useEffect(() => {
+        console.log(sessionId);
+        res(sessionId)
 
-   
-  }, [sessionId]);
+    }, [sessionId]);
 
 
- 
+
+
+
     return (
         <div className="min-h-screen flex items-center justify-center bg-green-50 p-6">
             <div className="bg-white max-w-xl w-full rounded-2xl shadow-xl p-8 border border-green-200">

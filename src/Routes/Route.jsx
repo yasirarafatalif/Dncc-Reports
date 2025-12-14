@@ -9,7 +9,6 @@ import IssueDetailsPreview from './../Pages/IssuseDetalis/IssueDetailsPreview';
 import UserSubmitIssue from "../Pages/UserIssuse/UserSubmitIssue";
 import LogIn from './../Pages/LogIn/LogIn';
 import IssueDetails from "../Pages/UserIssuse/IssueDetails";
-import DashboardLayout from "../LayOuts/DashboardLayOut";
 import UserIssue from "../Pages/DashBoard/NormalUser/UserIssue";
 import AllIssueCard from "../Pages/AllIssue/AllIssueCard";
 import ManageUsers from "../Pages/DashBoard/Admin/ManageUsers";
@@ -22,6 +21,8 @@ import StaffRoute from "./StaffRoute";
 import IssueBostPayment from "../Pages/DashBoard/Payments/IssueBostPayment";
 import UserSubcription from "../Pages/DashBoard/Payments/UserSubcription";
 import UserSubcriptionSuccess from "../Pages/DashBoard/Payments/UserSubcriptionSuccess";
+import AllPayments from "../Pages/DashBoard/Admin/AllPayments";
+import DashboardLayout from "../LayOuts/DashboardLayout";
 
 export const router = createBrowserRouter([
    {
@@ -56,7 +57,8 @@ export const router = createBrowserRouter([
     {path:'/dashboard/admin-all-manage-staff', element: <AdminRoute><ManageStaff></ManageStaff></AdminRoute>},
     {path:'/dashboard/apply-staff', Component: ApplyStaff},
     {path:'/dashboard/staff-accept-issue', element: <StaffRoute><AccepetIssue></AccepetIssue></StaffRoute>},
-    {path:'/dashboard/manage-user', element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>}
+    {path:'/dashboard/manage-user', element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>},
+    {path:'/dashboard/all-payments-info', element: <AdminRoute><AllPayments></AllPayments></AdminRoute>}
   ]
 }
 ])
