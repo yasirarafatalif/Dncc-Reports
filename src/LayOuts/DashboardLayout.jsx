@@ -16,6 +16,7 @@ import { FaHouseFlag, FaUsersGear } from 'react-icons/fa6';
 import useRole from '../Hooks/useRole';
 
 
+
 const DashboardLayout = () => {
   const { role } = useRole();
 
@@ -38,7 +39,10 @@ const DashboardLayout = () => {
         </nav>
         {/* Page content here */}
         <Outlet></Outlet>
-        {/* <div className="p-4">Page Content</div> */}
+        <div className="p-4">
+
+          
+        </div>
       </div>
 
       <div className="drawer-side is-drawer-close:overflow-visible">

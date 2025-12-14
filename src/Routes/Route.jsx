@@ -23,6 +23,7 @@ import UserSubcription from "../Pages/DashBoard/Payments/UserSubcription";
 import UserSubcriptionSuccess from "../Pages/DashBoard/Payments/UserSubcriptionSuccess";
 import AllPayments from "../Pages/DashBoard/Admin/AllPayments";
 import DashboardLayout from "../LayOuts/DashboardLayout";
+import AdminDashboard from "../Pages/DashBoard/Admin/AdminDashboard";
 
 export const router = createBrowserRouter([
    {
@@ -50,6 +51,7 @@ export const router = createBrowserRouter([
   </PrivateRoute>,
   children:[
     {path:'/dashboard/user-issue', Component: UserIssue},
+    {path:'/dashboard', element: <AdminRoute><AdminDashboard></AdminDashboard></AdminRoute>},
     {path:'/dashboard/payment-success', Component: IssueBostPayment},
     {path:'/dashboard/user-subcription-payment-success', Component: UserSubcriptionSuccess},
     {path:'/dashboard/admin-all-issue-manage', element: <AdminRoute> <AllIssueManage></AllIssueManage></AdminRoute>},
