@@ -4,8 +4,10 @@ import { useNavigate } from 'react-router';
 import useAxios from '../../../Hooks/useAxios';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
-import { CiCirclePlus } from 'react-icons/ci';
+import { CiCirclePlus, CiEdit } from 'react-icons/ci';
 import { useForm } from 'react-hook-form';
+import { GrUpdate } from 'react-icons/gr';
+import { MdDelete } from 'react-icons/md';
 
 const ManageStaff = () => {
     const { user,createUser, logOut } = useAuth();
@@ -75,6 +77,12 @@ const ManageStaff = () => {
     // reset();
     // addStaffRef.current.close();
   };
+
+
+  const handelstaffdelete=(d)=>{
+    console.log(d);
+
+  }
 
     return (
         <div className="p-6 min-h-screen bg-gray-200">
@@ -213,6 +221,25 @@ const ManageStaff = () => {
                                 </td>
 
                                 <td className="flex gap-2 justify-center">
+
+
+                                  
+                                   <button
+                                            onClick={() =>handelstaffdelete(c) }
+                                            className="px-4 py-1 flex justify-baseline items-center gap-1 bg-blue-600 hover:cursor-pointer text-white rounded-md hover:bg-blue-700 transition"
+                                        >
+                                            <GrUpdate /> Update
+                                        </button>
+
+                                         <button
+                                          onClick={() =>handelstaffdelete(c) }
+                                            className="px-4 py-1 flex justify-baseline items-center gap-1 bg-green-600 hover:cursor-pointer text-white rounded-md hover:bg-green-700 transition"
+                                        >
+                                          <MdDelete />  Delete
+                                        </button>
+
+
+                                  
 
                                     {/* APPROVE BUTTON */}
                                     {c?.staffStatus === "pending" && (

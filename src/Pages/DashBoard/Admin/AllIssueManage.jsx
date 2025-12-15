@@ -24,6 +24,8 @@ const AllIssueManage = () => {
     const axiosSecure = useAxios();
     const assignedStaff = useRef();
     const [selectedpercel, setselectedpercel] = useState(null)
+    const [selectedStaff, setSelectedStaff] = useState(null);
+
 
     const { data: issue = [], refetch } = useQuery({
         queryKey: ['all_issue'],
@@ -50,19 +52,19 @@ const AllIssueManage = () => {
         assignedStaff.current.showModal()
     }
 
-    const handelAssignStaff=(staff)=>{
-        
-        const updateInfo={
+    const handelAssignStaff = (staff) => {
+
+        const updateInfo = {
             staffName: staff.display_name,
             staffEmail: staff.email,
             phoneNumber: staff.staffPhoneNUmbe || '0185188347',
             staffId: staff._id
         }
         axiosSecure.patch(`/issue/${selectedpercel._id}`, updateInfo)
-        .then(res=>{
-            refetch()
-            assignedStaff.current.close()
-        })
+            .then(res => {
+                refetch()
+                assignedStaff.current.close()
+            })
     }
 
 
@@ -157,54 +159,52 @@ const AllIssueManage = () => {
             {/* <button className="btn" onClick={() => document.getElementById('my_modal_5').showModal()}>open modal</button> */}
             <dialog ref={assignedStaff} className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">
-                    <h3 className="font-bold text-lg">
-                        Rider:
+                    <h3 className="font-bold text-lg mb-4">Assign Staff</h3>
 
-                    </h3>
+                    {/* Dropdown */}
+                    <div className="form-control w-full">
+                        <label className="label">
+                            <span className="label-text font-semibold">Select Aviable Staff</span>
+                        </label>
 
-                    {/* Table */}
-                    <div className="overflow-x-auto my-4">
-                        <table className="table">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>Name</th>
-                                    <th>Work Status</th>
-                                    <th>Email</th>
-                                    <th>Assign Riders</th>
-                                </tr>
-                            </thead>
+                        <select
+                            className="select select-bordered w-full"
+                            defaultValue=""
+                            onChange={(e) => {
+                                const selectedId = e.target.value;
+                                const selectedStaff = staffs.find(s => s._id === selectedId);
+                                setSelectedStaff(selectedStaff);
+                            }}
+                        >
+                            <option disabled value="">Select a rider</option>
 
-                            <tbody>
-                                {
-                                  staffs?.map((r,i)=> 
-                                    <tr  key={r._id} className="bg-base-200">
-                                    <th>{i+1}</th>
-                                    <td>{r.display_name}</td>
-                                    <td>{r.staffStatus}</td>
-                                    <td>{r?.email}</td>
-                                    <td>
-                                         <button
-                                        onClick={()=>handelAssignStaff(r) }
-                                        className="btn btn-ghost bg-green-300 btn-xs">Assign Staff</button>
-                                    </td>
-                                </tr>)  
-                                }
-
-
-
-
-                            </tbody>
-                        </table>
+                            {
+                                staffs?.map(staff => (
+                                    <option key={staff._id} value={staff._id}>
+                                        {staff.display_name} ({staff?.email})
+                                    </option>
+                                ))
+                            }
+                        </select>
                     </div>
 
-                    <div className="modal-action">
+                    {/* Assign Button */}
+                    <div className="mt-6 flex justify-end gap-3">
+                        <button
+                            disabled={!selectedStaff}
+                            onClick={() => handelAssignStaff(selectedStaff)}
+                            className="btn btn-success"
+                        >
+                            Assign Staff
+                        </button>
+
                         <form method="dialog">
-                            <button className="btn">Close</button>
+                            <button className="btn btn-outline">Close</button>
                         </form>
                     </div>
                 </div>
             </dialog>
+
 
 
 

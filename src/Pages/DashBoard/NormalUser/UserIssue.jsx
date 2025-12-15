@@ -210,7 +210,9 @@ const UserIssue = () => {
 
                                 {/* Action Buttons */}
                                 <td className="flex gap-2">
-
+                                    {
+                                        percel?.payment_status !=='paid' && <>
+                                        
                                     {
                                         percel?.status === 'pending' &&
                                         <>
@@ -227,6 +229,9 @@ const UserIssue = () => {
 
                                         </>
                                     }
+                                        </>
+                                    }
+
 
                                     <Link to={`/issue/${percel._id}`}>
                                         <button className="btn btn-success btn-xs text-white">
