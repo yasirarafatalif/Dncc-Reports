@@ -71,12 +71,16 @@ const IssueDetails = () => {
   };
   const handelPayment = async(percel)=>{
 
+
     const paymentInfo = {
-      percelName : percel.name,
+      
+      percelName : percel.category,
       customer_email: percel.email,
+      customer_name: user?.displayName,
       percelId: percel._id,
       cost: 100
     }
+
     const res = await axiosSecure.post('/create-checkout-session', paymentInfo);
    window.location.href = res.data.url;
   }
