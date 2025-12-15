@@ -110,9 +110,19 @@ const DashboardLayout = () => {
              
 
             
-            <li>
+            {/* <li>
               <Link to='/dashboard/apply-staff' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Apply For Staff">
-                {/* Settings icon */}
+               
+              <RiUserVoiceLine />
+                <span className="is-drawer-close:hidden">
+
+                 Apply For Staff</span>
+              </Link>
+            </li> */}
+            
+            <li>
+              <Link to='/dashboard' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Apply For Staff">
+               
               <RiUserVoiceLine />
                 <span className="is-drawer-close:hidden">
 

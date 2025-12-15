@@ -64,7 +64,9 @@ const AllIssueManage = () => {
             .then(res => {
                 refetch()
                 assignedStaff.current.close()
+                setselectedpercel(null)
             })
+
     }
 
 
@@ -131,7 +133,7 @@ const AllIssueManage = () => {
                                 </td>
 
                                 {/* Assign Button */}
-                                <td className="p-2">
+                                {/* <td className="p-2">
                                     {!item.staffName ? (
                                         <button
                                             onClick={() => openAssignModal(item)}
@@ -148,7 +150,67 @@ const AllIssueManage = () => {
                                             Assigned
                                         </button>
                                     )}
+                                    {
+                                        item?.status==='pending'?
+                                        <button
+                                            
+                                            className="px-3 mx-2 py-1 bg-red-600 hover:cursor-pointer text-white rounded text-sm">
+                                            Rejects
+                                        </button>:
+                                        <button
+
+                                            className="px-3 py-1 bg-gray-400 text-white rounded text-sm"
+                                            disabled
+
+                                        >
+                                            Rejects
+                                        </button>
+                                        
+
+                                    }
+                                </td> */}
+
+
+                                <td className="p-2 flex gap-2">
+                                    {/* Assign Staff Button */}
+                                    {!item?.staffName ? (
+                                        <button
+                                            onClick={() => openAssignModal(item)}
+                                            className="px-3 py-1 bg-green-600 hover:bg-green-700 
+      text-white rounded text-sm transition"
+                                        >
+                                            Assign Staff
+                                        </button>
+                                    ) : (
+                                        <button
+                                            disabled
+                                            className="px-3 py-1 bg-gray-400 text-white 
+      rounded text-sm cursor-not-allowed"
+                                        >
+                                            Assigned
+                                        </button>
+                                    )}
+
+                                    {/* Reject Button */}
+                                    {item?.status === "pending" ? (
+                                        <button
+                                            onClick={() => handleReject(item)}
+                                            className="px-3 py-1 bg-red-600 hover:bg-red-700 
+      text-white rounded text-sm transition"
+                                        >
+                                            Reject
+                                        </button>
+                                    ) : (
+                                        <button
+                                            disabled
+                                            className="px-3 py-1 bg-gray-400 text-white 
+      rounded text-sm cursor-not-allowed"
+                                        >
+                                            Rejected
+                                        </button>
+                                    )}
                                 </td>
+
                             </tr>
                         ))}
                     </tbody>

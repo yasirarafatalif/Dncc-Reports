@@ -46,7 +46,7 @@ const UserSubcriptionSuccess = () => {
 
     const invoiceData = {
         company: {
-            name: "Smart City Service",
+            name: "NagorikCare",
             email: "yasirarafatalif1@gmail.com",
             phone: "+880 1851973300",
         },
@@ -59,7 +59,7 @@ const UserSubcriptionSuccess = () => {
         },
         items: [
             {
-                title: "Issue Reporting Service Fee",
+                title: userData?.paymentInfo?.percelName,
                 qty: 1,
                 price: userData?.paymentInfo?.amount,
             },
@@ -102,10 +102,10 @@ return (
 
         {/* SUBTEXT */}
         <p className="mt-2 text-gray-600 max-w-md">
-          <span className="font-medium">{userData?.session?.customer_email}</span>,
+          <span className="font-medium">{userData?.userInfo?.name}</span>,
           your payment of{" "}
           <span className="font-semibold text-green-700">
-            BDT {userData?.session?.amount_total}
+            BDT {userData?.paymentInfo?.amount}
           </span>{" "}
           was received. Your account is now <span className="font-semibold">Premium</span>.
         </p>
@@ -120,7 +120,7 @@ return (
           </div>
           <div className="text-right">
             <p className="text-lg font-bold text-green-800">
-              BDT {userData?.session?.amount_total}
+              BDT {userData?.paymentInfo?.amount}
             </p>
             <p className="text-xs text-green-600">One-time payment</p>
           </div>

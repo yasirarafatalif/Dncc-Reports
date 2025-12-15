@@ -16,14 +16,14 @@ const UserSubcription = () => {
     });
 
      const handelPayment = async(userInfo)=>{
-    // console.log(percel);
     const paymentInfo = {
       Name : userInfo.display_name,
       customer_email: userInfo.email,
       userId: userInfo._id,
-      cost: 1000
+      cost: 1000,
+      percelName:'Premium User'
     }
-    // console.log(paymentInfo);
+ 
     const res = await axiosSecure.post('/create-user-subcription', paymentInfo);
     window.location.href = res.data.url;
   }

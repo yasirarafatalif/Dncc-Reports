@@ -46,7 +46,7 @@ const IssueBostPayment = () => {
 
           const invoiceData = {
         company: {
-            name: "Smart City Service",
+            name: "NagorikCare",
             email: "yasirarafatalif1@gmail.com",
             phone: "+880 1851973300",
         },

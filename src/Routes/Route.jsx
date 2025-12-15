@@ -23,9 +23,6 @@ import UserSubcription from "../Pages/DashBoard/Payments/UserSubcription";
 import UserSubcriptionSuccess from "../Pages/DashBoard/Payments/UserSubcriptionSuccess";
 import AllPayments from "../Pages/DashBoard/Admin/AllPayments";
 import DashboardLayout from "../LayOuts/DashboardLayout";
-// import AdminDashboard from "../Pages/DashBoard/Admin/AdminDashboard";
-// import CitizenRoute from "./CitizenRoute";
-// import UserDashboard from "../Pages/DashBoard/NormalUser/UserDashboard";
 import Dashboard from "../Pages/DashBoard/Dashboard";
 import About from "../Pages/About/About";
 
