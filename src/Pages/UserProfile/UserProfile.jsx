@@ -114,6 +114,7 @@ const UserProfile = () => {
     if (!user) {
         navigate('/login')
     }
+    console.log(userInfo);
 
     return (
         <div className="min-h-screen bg-gray-100 flex justify-center p-8">
@@ -122,7 +123,7 @@ const UserProfile = () => {
                 <div className="flex items-center gap-6 border-b pb-6">
                     <div className="w-28 h-28 rounded-full overflow-hidden border-4 border-green-400 shadow">
                         <img
-                            src={userInfo?.photoURl || "https://i.ibb.co/4pDNDk1/avatar.png"}
+                            src={userInfo?.photoURL || "https://i.ibb.co/4pDNDk1/avatar.png"}
                             alt={userInfo?.display_name || "Profile"}
                             className="w-full h-full object-cover"
                         />

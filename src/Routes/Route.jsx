@@ -27,6 +27,7 @@ import DashboardLayout from "../LayOuts/DashboardLayout";
 // import CitizenRoute from "./CitizenRoute";
 // import UserDashboard from "../Pages/DashBoard/NormalUser/UserDashboard";
 import Dashboard from "../Pages/DashBoard/Dashboard";
+import About from "../Pages/About/About";
 
 export const router = createBrowserRouter([
    {
@@ -38,6 +39,7 @@ export const router = createBrowserRouter([
       // {path: '/register' , Component: Register},
       {path: '/register' , Component: Register},
       {path: '/login' , Component: LogIn},
+      {path: '/about' , Component: About},
       {path: '/user-profile' , element: <PrivateRoute> <UserProfile></UserProfile></PrivateRoute>},
       {path: '/issue/:id' , element: <PrivateRoute> <IssueDetails></IssueDetails></PrivateRoute>},
       {path: '/submit-issue' , element: <PrivateRoute><UserSubmitIssue></UserSubmitIssue> </PrivateRoute>},
