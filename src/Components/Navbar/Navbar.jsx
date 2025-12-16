@@ -3,6 +3,8 @@ import { Link, NavLink } from 'react-router';
 import useAuth from '../../Hooks/useAuth';
 import toast from 'react-hot-toast';
 import "./Navbar.css";
+import Logo from '../Shared/Logo';
+import Logo1 from '../Shared/Logo1';
 
 const Navbar = () => {
     const { user, logOut } = useAuth()
@@ -42,6 +44,7 @@ const Navbar = () => {
                     <Link to='/'><button className=" text-xl">
                         </button></Link>
                     {/* <Link to='/'><button className=" text-xl"><Logo></Logo></button></Link> */}
+                    <Link to='/'><button className=" text-xl"><Logo1></Logo1></button></Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu gap-2  text-gray-400 menu-horizontal px-1">
