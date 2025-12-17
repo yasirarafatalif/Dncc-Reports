@@ -25,6 +25,7 @@ import AllPayments from "../Pages/DashBoard/Admin/AllPayments";
 import DashboardLayout from "../LayOuts/DashboardLayout";
 import Dashboard from "../Pages/DashBoard/Dashboard";
 import About from "../Pages/About/About";
+import AllResolvedIssue from "../Pages/DashBoard/Admin/AllResolvedIssue";
 
 export const router = createBrowserRouter([
    {
@@ -62,6 +63,7 @@ export const router = createBrowserRouter([
     {path:'/dashboard/apply-staff', Component: ApplyStaff},
     {path:'/dashboard/staff-accept-issue', element: <StaffRoute><AccepetIssue></AccepetIssue></StaffRoute>},
     {path:'/dashboard/manage-user', element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>},
+    {path:'/dashboard/admin-all-resolved-issue-manage', element: <AdminRoute><AllResolvedIssue></AllResolvedIssue></AdminRoute>},
     {path:'/dashboard/all-payments-info', element: <AdminRoute><AllPayments></AllPayments></AdminRoute>}
   ]
 }

@@ -77,7 +77,6 @@ const ManageStaff = () => {
       photo: photoURL,
     };
     const res = await axiosSecure.post("/create-staff", staffData);
-    console.log(res.data);
 
     if (res.data.success) {
       Swal.fire("Success", "Staff created", "success");
@@ -203,8 +202,12 @@ const handleDeleteStaff = (staff) => {
               type="file"
               className="file-input file-input-bordered w-full"
               accept="image/*"
-              {...register("photo")}
+             {...register("photo", { required: "Photo is required" })}
             />
+             {errors.photo && (
+              <p className="text-red-500 text-sm">{errors.photo.message}</p>
+            )}
+             
 
 
             <input

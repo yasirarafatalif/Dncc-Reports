@@ -4,13 +4,15 @@ import "./Dashboard.css";
 
 import { Bike, CreditCard, House, } from 'lucide-react';
 // import useRole from '../Hooks/useRole';
-import { FaBoxOpen, FaHome, FaUserCog, FaUserMd, FaWpforms } from 'react-icons/fa';
+import { FaBoxOpen, FaHome, FaInbox, FaUserCog, FaUserMd, FaWpforms } from 'react-icons/fa';
 import { CiCreditCard1, CiSettings } from 'react-icons/ci';
 import { RiEBikeFill, RiUserVoiceLine } from "react-icons/ri";
 import { SiTask } from "react-icons/si";
 import { SiReacthookform } from "react-icons/si";
 import { IoIosAddCircleOutline } from 'react-icons/io';
 import { FaHouseFlag, FaUsersGear } from 'react-icons/fa6';
+import { IoCheckboxSharp } from "react-icons/io5";
+
 import useRole from '../Hooks/useRole';
 import useAuth from '../Hooks/useAuth';
 import Dashboard from './../Pages/DashBoard/Dashboard';
@@ -211,6 +213,24 @@ const DashboardLayout = () => {
                     <span className="is-drawer-close:hidden">
 
                       Manage users</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to='/dashboard/admin-all-issue-manage' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="All Issue">
+                    {/* Settings icon */}
+                   <FaInbox />
+                    <span className="is-drawer-close:hidden">
+
+                     All Issue</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to='/dashboard/admin-all-resolved-issue-manage' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Resloved Issue">
+                    {/* Settings icon */}
+                   <IoCheckboxSharp />
+                    <span className="is-drawer-close:hidden">
+
+                     Resloved Issue</span>
                   </NavLink>
                 </li>
                 <li>

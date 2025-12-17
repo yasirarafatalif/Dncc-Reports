@@ -262,18 +262,6 @@ const AdminDashboard = () => {
           </ul>
         </div>
 
-        {/* <style jsx>{`
-          @keyframes fadeInScale {
-            from {
-              opacity: 0;
-              transform: scale(0.95);
-            }
-            to {
-              opacity: 1;
-              transform: scale(1);
-            }
-          }
-        `}</style> */}
 
         {/* latset payments card */}
 
@@ -410,19 +398,6 @@ const AdminDashboard = () => {
           </ul>
         </div>
 
-        {/* <style jsx>{`
-          @keyframes slideInRight {
-            from {
-              opacity: 0;
-              transform: translateX(20px);
-            }
-            to {
-              opacity: 1;
-              transform: translateX(0);
-            }
-          }
-        `}</style> */}
-
         {/* latset user card */}
 
         {/* <div className="bg-white rounded-2xl shadow p-6">
@@ -524,19 +499,6 @@ const AdminDashboard = () => {
             ))}
           </ul>
         </div>
-
-        {/* <style jsx>{`
-          @keyframes fadeInUp {
-            from {
-              opacity: 0;
-              transform: translateY(10px);
-            }
-            to {
-              opacity: 1;
-              transform: translateY(0);
-            }
-          }
-        `}</style> */}
       </div>
     </div>
   );
