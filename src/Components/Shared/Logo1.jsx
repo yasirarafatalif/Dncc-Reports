@@ -1,5 +1,5 @@
 import React from 'react';
-import logoImg from '../../../public/logodemo.png'
+import logoImg from '/logodemo.png'
 
 const Logo1 = () => {
     return (
@@ -14,11 +14,12 @@ const Logo1 = () => {
                         className='w-[70px] h-[60px]'
                         src={logoImg} alt="" srcset="" />
                 </div>
-                <div  className='mt-3'>
+                <div className='mt-3'>
 
-                    <span className="text-[#475669]  text-3xl font-bold font-[Poppins]">
+                    <span className="text-[#475669] text-3xl font-bold font-[Poppins] italic">
                         agorikSheba
                     </span>
+
                 </div>
 
 

@@ -43,7 +43,7 @@ const UserRoleSection = () => {
      
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">
+          <h2 className="text-4xl font-extrabold text-[#71717A]   mb-4">
             User Roles
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
@@ -57,7 +57,7 @@ const UserRoleSection = () => {
           {roles.map((role, index) => (
             <div
               key={index}
-              className={`bg-gradient-to-br ${role.color} rounded-2xl p-8 shadow hover:shadow-xl transition`}
+              className={`bg-gradient-to-br ${role.color} rounded-2xl p-8 shadow hover:shadow-xl  hover:scale-105 hover:cursor-pointer transition`}
             >
               <div className="w-16 h-16 flex items-center justify-center rounded-full bg-white text-2xl mb-6 shadow">
                 {role.icon}

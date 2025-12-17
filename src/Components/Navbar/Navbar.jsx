@@ -41,19 +41,17 @@ const Navbar = () => {
 
                         </ul>
                     </div>
-                    <Link to='/'><button className=" text-xl">
-                        </button></Link>
-                    {/* <Link to='/'><button className=" text-xl"><Logo></Logo></button></Link> */}
+                    
                     <Link to='/'><button className=" text-xl"><Logo1></Logo1></button></Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
-                    <ul className="menu gap-2  text-gray-400 menu-horizontal px-1">
-                        <li> <NavLink to='/'>Home</NavLink></li>
-                       
-                        <li> <NavLink to='/about'>About</NavLink></li>
-                        <li> <NavLink to='/blog'>Blog</NavLink></li>
-                        <li> <NavLink to='/all-issue'>All Issue</NavLink></li>
-                        <li> <NavLink to='/contact'>Contact</NavLink></li>
+                    <ul className="menu gap-2   text-gray-400 menu-horizontal px-1">
+                        <li className='nav-btn'> <NavLink to='/'>Home</NavLink></li>  
+                        <li className='nav-btn'> <NavLink to='/about'>About</NavLink></li>
+                        <li className='nav-btn'> <NavLink to='/blog'>Blog</NavLink></li>
+                        <li className='nav-btn'> <NavLink to='/all-issue'>All Issue</NavLink></li>
+                        <li className='nav-btn'> <NavLink   to='/contact'>Contact</NavLink></li>
+                        
 
 
                     </ul>
@@ -76,13 +74,13 @@ const Navbar = () => {
                                     tabIndex={0}
                                     className="menu menu-sm dropdown-content bg-base-100 p-3 shadow rounded-xl w-52"
                                 >
-                                    <li className="font-semibold text-gray-700 px-3 py-2">
+                                    <li className="font-semibold nav-btn text-gray-700 px-3 py-2">
                                         {user.displayName || "User"}
                                     </li>
-                                    <li><Link to="/dashboard">Dashboard</Link></li>
-                                    <li><Link to="/user-profile">Profile</Link></li>
+                                    <li className='nav-btn'><Link to="/dashboard">Dashboard</Link></li>
+                                    <li className='nav-btn'><Link to="/user-profile">Profile</Link></li>
 
-                                    <li>
+                                    <li className='nav-btn'>
                                         <button onClick={handelLogOut} className="text-red-500">
                                             Log Out
                                         </button>

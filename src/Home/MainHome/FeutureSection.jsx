@@ -55,7 +55,7 @@ const FeutureSection = () => {
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-14">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">
+          <h2 className="text-4xl  font-extrabold text-[#71717A]  mb-4">
             Powerful Features
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
@@ -70,7 +70,7 @@ const FeutureSection = () => {
             <div
             data-aos="fade-up"
               key={index}
-              className={`bg-gradient-to-br ${gradients[index]} rounded-2xl p-8 shadow hover:shadow-xl transition duration-300 hover:-translate-y-1`}
+              className={`bg-gradient-to-br ${gradients[index]} hover:scale-105 hover:cursor-pointer rounded-2xl p-8 shadow hover:shadow-xl transition duration-300 hover:-translate-y-1`}
             >
               <div className="w-14 h-14 flex items-center justify-center rounded-xl bg-white/80 text-green-600 text-2xl mb-6 shadow">
                 {item.icon}

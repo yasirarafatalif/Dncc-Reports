@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
 import useAxios from "../../../Hooks/useAxios";
+import { CiCircleInfo } from "react-icons/ci";
 
 // Dummy stats data
 
@@ -16,34 +17,33 @@ const paymentChartData = [
 
 
 const AdminDashboard = () => {
-    const axiosSecure= useAxios();
- const { data: paymentInf = [] } = useQuery({
-        queryKey: ["admin-all-get-issue"],
-        queryFn: async () => {
-            const res = await axiosSecure.get('/admin-dashboard');
-            console.log(res.data);
-            return res.data;
-        },
-    });
-    console.log(paymentInf);
+  const axiosSecure = useAxios();
+  const { data: paymentInf = [] } = useQuery({
+    queryKey: ["admin-all-get-issue"],
+    queryFn: async () => {
+      const res = await axiosSecure.get('/admin-dashboard');
+      return res.data;
+    },
+  });
+  console.log(paymentInf);
 
-    const stats = [
-  { title: "Total Issues", value: paymentInf?.totalIssue},
-  { title: "Resolved Issues", value: paymentInf?.resolvedIssue },
-  { title: "Pending Issues", value: paymentInf?.pendingIssue },
-  { title: "Rejected Issues", value: paymentInf?.rejectedIssue},
-  { title: "Total Payment", value: paymentInf?.totalPayment },
-  { title: "Total Users", value: paymentInf?.totalUsers },
-];
+  const stats = [
+    { title: "Total Issues", value: paymentInf?.totalIssue },
+    { title: "Resolved Issues", value: paymentInf?.resolvedIssue },
+    { title: "Pending Issues", value: paymentInf?.pendingIssue },
+    { title: "Rejected Issues", value: paymentInf?.rejectedIssue },
+    { title: "Total Payment", value: paymentInf?.totalPayment },
+    { title: "Total Users", value: paymentInf?.totalUsers },
+  ];
 
-const issueChartData = [
-  { name: "Resolved", value: paymentInf?.resolvedIssue },
-  { name: "Pending", value:  paymentInf?.pendingIssue  },
-  { name: "Rejected", value: paymentInf?.rejectedIssue },
-];
+  const issueChartData = [
+    { name: "Resolved", value: paymentInf?.resolvedIssue },
+    { name: "Pending", value: paymentInf?.pendingIssue },
+    { name: "Rejected", value: paymentInf?.rejectedIssue },
+  ];
 
 
-    return (
+  return (
     <div className="min-h-screen bg-gray-100 p-6 space-y-6">
       {/* STATS CARDS */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">

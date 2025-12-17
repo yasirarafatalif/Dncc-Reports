@@ -37,7 +37,7 @@ const steps = [
 const HowItWork = () => {
   return (
     <section className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl  mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-800 mb-4">
@@ -54,7 +54,7 @@ const HowItWork = () => {
           {steps.map((step, index) => (
             <div
               key={index}
-              className="text-center p-6 rounded-2xl bg-gray-50 hover:bg-green-50 transition"
+              className="text-center hover:scale-105 hover:cursor-pointer p-6 rounded-2xl bg-gray-50 hover:bg-green-50 transition"
             >
               <div className="w-16 h-16 mx-auto flex items-center justify-center rounded-full bg-green-100 text-green-600 text-2xl mb-6">
                 {step.icon}

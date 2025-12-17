@@ -35,6 +35,7 @@ const Slider = () => {
             onSlideChange={() => {
                 AOS.refresh();
             }}
+           
             className="mySwiper"
         >
             {/* Slide 1 */}
