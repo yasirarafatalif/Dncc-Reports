@@ -32,7 +32,7 @@ const Navbar = () => {
                             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
                             <li> <NavLink>Home</NavLink></li>
                             <li> <NavLink to='/about'>About</NavLink></li>
-                            <li> <NavLink to='/blog'>Blog</NavLink></li>
+                            
                             <li> <NavLink to='/all-issue'>All Issue</NavLink></li>
                             <li> <NavLink to='/contact'>Contact</NavLink></li>
 
@@ -48,7 +48,7 @@ const Navbar = () => {
                     <ul className="menu gap-2   text-gray-400 menu-horizontal px-1">
                         <li className='nav-btn'> <NavLink to='/'>Home</NavLink></li>  
                         <li className='nav-btn'> <NavLink to='/about'>About</NavLink></li>
-                        <li className='nav-btn'> <NavLink to='/blog'>Blog</NavLink></li>
+                        
                         <li className='nav-btn'> <NavLink to='/all-issue'>All Issue</NavLink></li>
                         <li className='nav-btn'> <NavLink   to='/contact'>Contact</NavLink></li>
                         

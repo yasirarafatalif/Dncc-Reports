@@ -16,76 +16,9 @@ const LatestResloved = () => {
             return res.data;
         },
     });
-    console.log(latestIssue);
+  
 
-    // 🔹 Fake Data
-    const issues = [
-        {
-            id: "1",
-            title: "Broken Streetlight",
-            location: "Dhanmondi, Dhaka",
-            category: "Streetlight",
-            status: "resolved",
-            resolvedAt: "10 Aug 2025",
-            image:
-                "https://images.unsplash.com/photo-1504215680853-026ed2a45def",
-        },
-        {
-            id: "2",
-            title: "Pothole on Main Road",
-            location: "Mirpur 10",
-            category: "Road",
-            status: "resolved",
-            resolvedAt: "09 Aug 2025",
-            image:
-                "https://images.unsplash.com/photo-1505842465776-3ac2697b3f4a",
-        },
-        {
-            id: "3",
-            title: "Garbage Overflow",
-            location: "Uttara Sector 7",
-            category: "Sanitation",
-            status: "resolved",
-            resolvedAt: "08 Aug 2025",
-            image:
-                "https://images.unsplash.com/photo-1605600659873-d808a13e4d2a",
-        },
-        {
-            id: "4",
-            title: "Water Leakage",
-            location: "Mohammadpur",
-            category: "Water",
-            status: "resolved",
-            resolvedAt: "07 Aug 2025",
-            image:
-                "https://images.unsplash.com/photo-1581093588401-16d3c61f6b6b",
-        },
-        {
-            id: "5",
-            title: "Damaged Footpath",
-            location: "Farmgate",
-            category: "Footpath",
-            status: "resolved",
-            resolvedAt: "06 Aug 2025",
-            image:
-                "https://images.unsplash.com/photo-1508609349937-5ec4ae374ebf",
-        },
-        {
-            id: "6",
-            title: "Traffic Signal Not Working",
-            location: "Gulshan 2",
-            category: "Traffic",
-            status: "resolved",
-            resolvedAt: "05 Aug 2025",
-            image:
-                "https://images.unsplash.com/photo-1503376780353-7e6692767b70",
-        },
-    ];
 
-    // 🔹 Only resolved issues (sorted & limited)
-    const resolvedIssues = issues
-        .filter((issue) => issue.status === "resolved")
-        .slice(0, 6);
 
     return (
         <section className="py-20 bg-white">
@@ -96,7 +29,7 @@ const LatestResloved = () => {
                     <h2 className="text-4xl font-extrabold text-[#71717A]   mb-4">
                         Latest Resolved Issues
                     </h2>
-                    <p className="text-gray-600 bg-primary max-w-2xl mx-auto">
+                    <p className="text-gray-600  max-w-2xl mx-auto">
                         Recent public infrastructure issues successfully resolved by
                         authorities.
                     </p>
@@ -239,18 +172,7 @@ const LatestResloved = () => {
                         );
                     })}
 
-                    <style jsx>{`
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-`}</style>
+
                 </div>
             </div>
         </section>
