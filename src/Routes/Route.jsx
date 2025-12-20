@@ -44,7 +44,7 @@ export const router = createBrowserRouter([
       {path: '/about' , Component: About},
       {path: '/user-profile' , element: <PrivateRoute> <UserProfile></UserProfile></PrivateRoute>},
       {path: '/issue/:id' , element: <PrivateRoute> <IssueDetails></IssueDetails></PrivateRoute>},
-      {path: '/submit-issue' , element: <CitizenRoute><UserSubmitIssue></UserSubmitIssue> </CitizenRoute>},
+      {path: '/submit-issue' , element: <PrivateRoute><UserSubmitIssue></UserSubmitIssue></PrivateRoute>},
       { path:'/all-issue', element:  < AllIssueCard></AllIssueCard>},
       { path:'/contact', element:  <Contact></Contact>}
      
