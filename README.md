@@ -2,7 +2,7 @@
 
 A modern digital platform that allows citizens to report public infrastructure issues (like broken roads, streetlights, garbage overflow, water leakage, etc.) and enables government admins & staff to manage, track, and resolve those issues efficiently.
 
-🔗 **Live Website:** https://your-live-site-link.web.app  
+🔗 **Live Website:** [https://nagoriksheba.netlify.app ](https://nagoriksheba.netlify.app) 
 
 ---
 
@@ -108,8 +108,8 @@ A modern digital platform that allows citizens to report public infrastructure i
 
 ## 📂 GitHub Repositories
 
-- **Client Repo:** [https://github.com/your-username/issue-reporting-client](https://github.com/yasirarafatalif/Dncc-Reports.git)  
-- **Server Repo:** [https://github.com/your-username/issue-reporting-server](https://github.com/yasirarafatalif/Dncc-Reports-Server.git)  
+- **Client Repo:** [https://github.com/yasirarafatalif/Dncc-Reports.git](https://github.com/yasirarafatalif/Dncc-Reports.git)  
+- **Server Repo:** [https://github.com/yasirarafatalif/Dncc-Reports-Server.git](https://github.com/yasirarafatalif/Dncc-Reports-Server.git)  
 
 ---
 
