@@ -39,6 +39,7 @@ const StaffResloved = () => {
 
     return (
         <div className="p-5">
+          <title>Staff Resolved Issues</title>
 
 
 

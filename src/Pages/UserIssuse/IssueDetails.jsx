@@ -88,6 +88,7 @@ const IssueDetails = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 py-10 px-4 flex justify-center">
+      <title>Issue Detalis</title>
       <div
         className="max-w-5xl w-full space-y-6"
         style={{ animation: "fadeIn 0.6s ease-out" }}

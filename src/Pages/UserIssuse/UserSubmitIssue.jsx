@@ -158,6 +158,7 @@ const UserSubmitIssue = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 py-10 px-4 flex justify-center">
+      <title>User Sumbit Issue Page</title>
       <div className="max-w-3xl w-full bg-white shadow-lg rounded-xl p-8 space-y-8">
 
         <h1 className="text-3xl font-bold text-gray-800 text-center">Submit a New Issue</h1>

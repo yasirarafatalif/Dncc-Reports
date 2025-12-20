@@ -26,6 +26,7 @@ const LogIn = () => {
 
     return (
         <div className="w-full py-4 max-w-md mx-auto bg-white shadow-lg rounded-2xl p-8">
+            <title>LogIn Page</title>
             
             {/* Heading */}
             <h1 className="text-3xl font-bold mb-2 text-gray-800">Welcome Back 👋</h1>

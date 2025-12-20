@@ -63,6 +63,7 @@ const StaffDashboard = () => {
   ];
   return (
     <div className="p-6 space-y-6 bg-gray-50 min-h-screen">
+      <title>Staff Dashboard</title>
       {/* ====== STAT CARDS ====== */}
       {/* <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                 {stats.map((item, i) => (

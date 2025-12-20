@@ -3,6 +3,7 @@ import React from "react";
 const ErrorPage = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 px-4 text-center">
+      <title>Error Page</title>
       <div className="max-w-md w-full">
         <h1 className="text-7xl font-extrabold text-gray-800">404</h1>
         <p className="mt-4 text-2xl font-semibold text-gray-700">Page Not Found</p>

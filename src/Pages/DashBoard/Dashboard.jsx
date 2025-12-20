@@ -8,6 +8,7 @@ const Dashboard = () => {
       const { role } = useRole();
     return (
         <div>
+            <title>Dashboard</title>
             {
                 role==='admin' && <AdminDashboard></AdminDashboard>
             }

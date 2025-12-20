@@ -69,6 +69,7 @@ const Register = () => {
     }
     return (
         <div className="min-h-screen py-3 flex items-center justify-center bg-gray-100 px-4">
+            <title>Register Page</title>
             <div className="w-full max-w-md bg-white shadow-xl rounded-xl p-8">
 
                 {/* Heading */}

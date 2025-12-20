@@ -118,6 +118,7 @@ const UserProfile = () => {
 
     return (
         <div className="min-h-screen bg-gray-100 flex justify-center p-8">
+            <title>User Profile</title>
             <div className="bg-white w-full max-w-4xl rounded-2xl shadow-xl p-10">
                 {/* HEADER */}
                 <div className="flex items-center gap-6 border-b pb-6">
