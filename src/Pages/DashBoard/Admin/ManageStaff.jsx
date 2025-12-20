@@ -168,6 +168,7 @@ const handleDeleteStaff = (staff) => {
 
   return (
     <div className="p-6 min-h-screen bg-gray-200">
+      <title>All Manage Staff</title>
 
       {/* MODAL */}
       <dialog ref={addStaffRef} className="modal">

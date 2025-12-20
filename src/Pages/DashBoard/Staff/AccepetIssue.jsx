@@ -69,6 +69,7 @@ const AccepetIssue = () => {
 
     return (
         <div className="p-5">
+          <title>Staff Accepct Issues</title>
 
 
 

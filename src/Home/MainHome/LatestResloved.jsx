@@ -24,7 +24,7 @@ const LatestResloved = () => {
     };
     axiosSecure.patch(`/likes/${issueId._id}`, userData).then((res) => {
       if (res.data.message === "Like added") {
-        toast.success("You Are SuccessFully votr fot this issue");
+        toast.success("You Are SuccessFully vote fot this issue");
       }
       if (res.data.message === "Already liked") {
         toast.error("You Are Already Like This Issue");
@@ -33,7 +33,7 @@ const LatestResloved = () => {
       refetch();
     });
   };
-  
+
 //   const isLiked = issue?.likedBy?.includes(user?.email);
 
   return (

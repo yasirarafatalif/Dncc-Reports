@@ -5,6 +5,7 @@ const Contact = () => {
    
   return (
     <div className="min-h-screen bg-gray-100 py-10 px-4">
+      <title>Contact</title>
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-10">

@@ -31,6 +31,7 @@ const UserSubcription = () => {
         <div>
 
             <div className="min-h-screen flex items-center justify-center bg-gray-100 p-6">
+                <title>User Subcription issue</title>
                 <div className="bg-white max-w-md w-full rounded-2xl shadow-xl p-8 border border-gray-200">
 
 

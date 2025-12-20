@@ -43,6 +43,7 @@ const COLORS = ["#22c55e", "#facc15", "#ef4444"];
   return (
 
     <div className="min-h-screen bg-gray-100 p-6 space-y-6">
+      <title>User Dashboard</title>
       {/* STATS CARDS */}
 
 

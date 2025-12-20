@@ -126,6 +126,7 @@ const UserIssue = () => {
 
     return (
         <div className="p-5">
+            <title>User Issue</title>
             <h2 className="text-2xl font-bold mb-4">My Submitted Issues</h2>
 
 

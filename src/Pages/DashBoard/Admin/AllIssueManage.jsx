@@ -93,6 +93,7 @@ const AllIssueManage = () => {
 
   return (
     <div className="bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50 p-6 min-h-screen">
+      <title>Admin Manage All Issue</title>
       {/* ================= FILTER SECTION ================= */}
       <div className="relative overflow-hidden bg-gradient-to-br from-white via-purple-50/30 to-white rounded-2xl shadow-xl border border-purple-100/50 p-6 mb-6">
         {/* Decorative background */}

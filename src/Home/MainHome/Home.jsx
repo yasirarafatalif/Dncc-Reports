@@ -10,6 +10,7 @@ import LatestResloved from './LatestResloved';
 const Home = () => {
     return (
         <div>
+            <title>Home</title>
             
              <Slider></Slider>
              <LatestResloved></LatestResloved>

@@ -33,6 +33,7 @@ const AllResolvedIssue = () => {
   
     return (
  <div className="bg-gradient-to-br from-gray-50 to-gray-100 p-6 min-h-screen">
+  <title>All Resloved Issues</title>
 
   {/* ================= FILTER SECTION ================= */}
   <div className="relative overflow-hidden bg-gradient-to-br from-white via-blue-50/30 to-white rounded-2xl shadow-xl border border-blue-100/50 p-6 mb-6">

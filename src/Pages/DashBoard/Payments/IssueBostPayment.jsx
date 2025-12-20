@@ -84,6 +84,7 @@ const IssueBostPayment = () => {
 
  return (
    <div className="min-h-screen flex items-center justify-center bg-green-50 p-6">
+    <title>Your Issue Payment</title>
      <div className="bg-white max-w-xl w-full rounded-2xl shadow-xl p-8 border border-green-200">
  
        {/* ICON */}

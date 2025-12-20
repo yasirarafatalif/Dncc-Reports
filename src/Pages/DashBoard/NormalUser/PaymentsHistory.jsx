@@ -49,6 +49,7 @@ const PaymentsHistory = () => {
 
   return (
     <div className="p-6 bg-gray-50 min-h-screen">
+      <title>User Payments History</title>
       {/* HEADER */}
       <div className="mb-6">
         <h2 className="text-2xl font-bold text-gray-800">All Payments</h2>

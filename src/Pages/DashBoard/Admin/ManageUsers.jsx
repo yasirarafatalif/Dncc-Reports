@@ -72,6 +72,7 @@ const ManageUsers = () => {
 
   return (
     <div className="p-5">
+      <title>All Manage Users</title>
       <h2 className="text-2xl font-bold mb-4">Manage Citizens</h2>
 
       <div className="bg-white p-4 rounded-xl shadow mb-6 flex flex-col md:flex-row gap-4 items-center">

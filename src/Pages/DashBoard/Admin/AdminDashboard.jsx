@@ -53,6 +53,7 @@ const AdminDashboard = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 p-6 space-y-6">
+      <title>Admin Dashboard</title>
       {/* STATS CARDS */}
       {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
         {stats.map((s, i) => (
