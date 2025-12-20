@@ -19,6 +19,10 @@ const LatestResloved = () => {
     },
   });
   const handelLikeUpdate = (issueId) => {
+      if(!user){
+    return toast.error("You must be login")
+
+  }
     const userData = {
       likeEmail: user?.email,
     };

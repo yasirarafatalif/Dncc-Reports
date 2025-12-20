@@ -31,6 +31,7 @@ import StaffResloved from "../Pages/DashBoard/Staff/StaffResloved";
 import PaymentsHistory from "../Pages/DashBoard/NormalUser/PaymentsHistory";
 import Contact from "../Pages/Contact/Contact";
 import CitizenRoute from "./CitizenRoute";
+import PaymentCancelled from "../Pages/DashBoard/Payments/PaymentCancelled";
 
 export const router = createBrowserRouter([
    {
@@ -71,7 +72,8 @@ export const router = createBrowserRouter([
     {path:'/dashboard/admin-all-rejected-issue-manage', element: <AdminRoute><AllRejectedIssue></AllRejectedIssue></AdminRoute>},
     {path:'/dashboard/all-payments-info', element: <AdminRoute><AllPayments></AllPayments></AdminRoute>},
     {path:'/dashboard/staff-resloved-issue', element: <StaffRoute><StaffResloved></StaffResloved></StaffRoute>},
-    {path:'/dashboard/payment-history', element: <CitizenRoute><PaymentsHistory></PaymentsHistory></CitizenRoute>}
+    {path:'/dashboard/payment-history', element: <CitizenRoute><PaymentsHistory></PaymentsHistory></CitizenRoute>},
+    {path:'dashboard/payment-canceled', element: <CitizenRoute><PaymentCancelled></PaymentCancelled></CitizenRoute>}
   ]
 }
 ])
