@@ -108,8 +108,8 @@ A modern digital platform that allows citizens to report public infrastructure i
 
 ## 📂 GitHub Repositories
 
-- **Client Repo:** [https://github.com/your-username/issue-reporting-client](https://github.com/yasirarafatalif/Dncc-Reports.git)  
-- **Server Repo:** [https://github.com/your-username/issue-reporting-server](https://github.com/yasirarafatalif/Dncc-Reports-Server.git)  
+- **Client Repo:** [https://github.com/yasirarafatalif/Dncc-Reports.git](https://github.com/yasirarafatalif/Dncc-Reports.git)  
+- **Server Repo:** [https://github.com/yasirarafatalif/Dncc-Reports-Server.git](https://github.com/yasirarafatalif/Dncc-Reports-Server.git)  
 
 ---
 
