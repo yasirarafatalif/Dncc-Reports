@@ -7,20 +7,20 @@ A modern digital platform that allows citizens to report public infrastructure i
 ---
 
 ## 🔐 Admin Credentials (Demo)
-- **Email:** admin@gmail.com  
-- **Password:** Admin@123  
+- **Email:** testadmin@gmail.com
+- **Password:** 123123  
 
 ---
 
 ## 👤 Demo User Credentials
 
 ### Citizen
-- **Email:** citizen@gmail.com  
-- **Password:** Citizen@123  
+- **Email:** testuser1@gmail.com
+- **Password:** 123123  
 
 ### Staff
-- **Email:** staff@gmail.com  
-- **Password:** Staff@123  
+- **Email:** staff1@gmail.com
+- **Password:** 123123  
 
 ---
 
@@ -108,8 +108,8 @@ A modern digital platform that allows citizens to report public infrastructure i
 
 ## 📂 GitHub Repositories
 
-- **Client Repo:** https://github.com/your-username/issue-reporting-client  
-- **Server Repo:** https://github.com/your-username/issue-reporting-server  
+- **Client Repo:** [https://github.com/your-username/issue-reporting-client](https://github.com/yasirarafatalif/Dncc-Reports.git)  
+- **Server Repo:** [https://github.com/your-username/issue-reporting-server](https://github.com/yasirarafatalif/Dncc-Reports-Server.git)  
 
 ---
 
