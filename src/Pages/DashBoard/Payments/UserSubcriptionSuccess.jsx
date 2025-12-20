@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router';
+import { Link, useSearchParams } from 'react-router';
 import useAxios from '../../../Hooks/useAxios';
 import InvoicePDF from './InvoicePDF';
 import { PDFDownloadLink } from '@react-pdf/renderer';
@@ -11,7 +11,7 @@ const UserSubcriptionSuccess = () => {
 
     const [userData, setUserData] = useState(null);
     const [loading, setLoading] = useState(true);
-    console.log(userData);
+   
 
     useEffect(() => {
         if (!sessionId) return;
@@ -128,11 +128,11 @@ return (
 
         {/* ACTION BUTTONS */}
         <div className="mt-6 w-full flex flex-col sm:flex-row gap-3">
-          <button
+          <Link to='/dashboard'
             className="flex-1 px-4 py-3 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition"
           >
             Go to Dashboard
-          </button>
+          </Link>
 
           <PDFDownloadLink
             document={<InvoicePDF data={invoiceData} />}

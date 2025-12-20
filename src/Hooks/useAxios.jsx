@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import useAuth from './useAuth';
 import { useNavigate } from 'react-router';
 const axiosSecure = axios.create({
+  // baseURL: 'https://nagorikserver.vercel.app'
   baseURL: 'http://localhost:3000'
 
 }
@@ -12,7 +13,7 @@ const useAxios = () => {
   const navigate = useNavigate();
   useEffect(()=>{
     const interceptor =axiosSecure.interceptors.request.use(config=>{
-      config.headers.Authorization= `Berar ${user?.accessToken}`
+      config.headers.Authorization= `Bearer ${user?.accessToken}`
       return config
     })
 
@@ -23,14 +24,13 @@ const useAxios = () => {
     (error)=>{
       const statusCode = error.status
       if(statusCode== 401 || statusCode== 403){
-        logOut()
-        .then(()=>{
-          navigate('/login')
-        })
+        // logOut()
+        // .then(()=>{
+        //   navigate('/login')
+        // })
         
       }
-      console.log(error)
-      console.log(statusCode);
+      
       return Promise.reject(error)
     }
   )

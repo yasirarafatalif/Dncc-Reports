@@ -2,28 +2,26 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import useAxios from "../../../Hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
-import MonthlyPaymentChart from "../../../Components/BarChartComponents/MonthlyPaymentChart";
 import Swal from "sweetalert2";
+import useAuth from "../../../Hooks/useAuth";
+import Spinar from "../../../Components/Shared/Spinar";
 
-const AllPayments = () => {
+const PaymentsHistory = () => {
   const navigate = useNavigate();
   const axiosSecure = useAxios();
+  const {user}=useAuth();
 
   const [searchEmail, setSearchEmail] = useState("");
   const [paymentType, setPaymentType] = useState("all");
 
   const { data: paymentInf = [] ,isLoading} = useQuery({
-    queryKey: ["all-payments"],
+    queryKey: ["users-payments"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/all-payments");
+      const res = await axiosSecure.get(`/payments/email?userEmail=${user?.email}`);
       return res.data;
     },
   });
-  if(isLoading){
-    <div className="flex items-center justify-center h-screen">
-        <div className="animate-spin w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full"></div>
-      </div>
-  }
+  if(isLoading)<Spinar></Spinar>
 
 
 
@@ -38,25 +36,7 @@ const AllPayments = () => {
     return emailMatch && typeMatch;
   });
 
-  const getMonthlyPayments = (payments) => {
-    const monthMap = {};
 
-    payments.forEach((payment) => {
-      const date = new Date(payment.paidAt);
-      const month = date.toLocaleString("default", { month: "short" });
-
-      if (!monthMap[month]) {
-        monthMap[month] = 0;
-      }
-
-      monthMap[month] += 1;
-    });
-
-    return Object.keys(monthMap).map((month) => ({
-      month,
-      payments: monthMap[month],
-    }));
-  };
   const handelView = (paymentData) => {
     const massege = paymentData?.paymentType;
 
@@ -156,9 +136,9 @@ const AllPayments = () => {
           </tbody>
         </table>
       </div>
-      <MonthlyPaymentChart payments={paymentInf}></MonthlyPaymentChart>
+      
     </div>
   );
 };
 
-export default AllPayments;
+export default PaymentsHistory;

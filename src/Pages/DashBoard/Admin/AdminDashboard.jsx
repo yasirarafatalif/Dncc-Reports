@@ -13,27 +13,27 @@ import {
 } from "recharts";
 import useAxios from "../../../Hooks/useAxios";
 import { CiCircleInfo } from "react-icons/ci";
+import Spinar from "../../../Components/Shared/Spinar";
+import useAuth from "../../../Hooks/useAuth";
 
-// Dummy stats data
-
-const paymentChartData = [
-  { month: "Jan", amount: 40000 },
-  { month: "Feb", amount: 32000 },
-  { month: "Mar", amount: 52000 },
-  { month: "Apr", amount: 48000 },
-  { month: "May", amount: 73000 },
-];
 
 const AdminDashboard = () => {
   const axiosSecure = useAxios();
-  const { data: paymentInf = [] } = useQuery({
+  const{isLoading:loading}= useAuth()
+  const { data: paymentInf = [] , isLoading } = useQuery({
     queryKey: ["admin-all-get-issue"],
     queryFn: async () => {
       const res = await axiosSecure.get("/admin-dashboard");
       return res.data;
     },
   });
-  console.log(paymentInf);
+  
+ if (loading|| isLoading) {
+  return <Spinar />;
+}
+
+  const pieColors = ["#22c55e", "#facc15", "#ef4444"]; 
+
 
   const stats = [
     { title: "Total Issues", value: paymentInf?.totalIssue },
@@ -49,6 +49,7 @@ const AdminDashboard = () => {
     { name: "Pending", value: paymentInf?.pendingIssue },
     { name: "Rejected", value: paymentInf?.rejectedIssue },
   ];
+  
 
   return (
     <div className="min-h-screen bg-gray-100 p-6 space-y-6">
@@ -94,54 +95,10 @@ const AdminDashboard = () => {
         ))}
       </div>
 
-      {/* CHARTS */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-2xl shadow p-6">
-          <h3 className="font-semibold mb-4">Issue Status Overview</h3>
-          <ResponsiveContainer width="100%" height={250}>
-            <PieChart>
-              <Pie
-                data={issueChartData}
-                dataKey="value"
-                nameKey="name"
-                outerRadius={90}
-              >
-                {issueChartData.map((_, index) => (
-                  <Cell key={index} />
-                ))}
-              </Pie>
-              <Tooltip />
-            </PieChart>
-          </ResponsiveContainer>
-        </div>
-
-        <div className="bg-white rounded-2xl shadow p-6">
-          <h3 className="font-semibold mb-4">Monthly Payments</h3>
-          <ResponsiveContainer width="100%" height={250}>
-            <BarChart data={paymentChartData}>
-              <XAxis dataKey="month" />
-              <YAxis />
-              <Tooltip />
-              <Bar dataKey="amount" />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
+  
 
       {/* LATEST DATA */}
-      {/* <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="bg-white rounded-2xl shadow p-6">
-          <h3 className="font-semibold mb-4">Latest Issues</h3>
-          <ul className="space-y-2">
-            {paymentInf?.latestIssue?.map((i, idx) => (
-              <li key={idx} className="flex justify-between text-sm">
-                <span>{i?.category}</span>
-                <span className="font-medium">{i?.status}</span>
-              </li>
-            ))}
-          </ul>
-        </div> */}
-      {/* LATEST DATA */}
+   
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* <div className="bg-white rounded-2xl shadow p-6">
           <h3 className="font-semibold mb-4">Latest Issues</h3>
@@ -499,7 +456,64 @@ const AdminDashboard = () => {
             ))}
           </ul>
         </div>
+
+
+        
       </div>
+          {/* CHARTS */}
+     <div className="grid grid-cols-1 lg:grid-cols-1 gap-6">
+
+  {/* ===== Pie Chart ===== */}
+  <div className="bg-white rounded-2xl shadow p-6">
+    <h3 className="font-semibold mb-4">Issue Status Overview</h3>
+
+    <ResponsiveContainer width="100%" height={250}>
+      <PieChart>
+        <Pie
+          data={issueChartData}
+          dataKey="value"
+          nameKey="name"
+          outerRadius={90}
+          isAnimationActive={true}
+        >
+          {issueChartData.map((item, index) => (
+            <Cell
+              key={index}
+              fill={
+                item.name === "Resolved"
+                  ? "#22c55e"   // green
+                  : item.name === "Pending"
+                  ? "#facc15"   // yellow
+                  : "#ef4444"   // red
+              }
+            />
+          ))}
+        </Pie>
+        <Tooltip />
+      </PieChart>
+    </ResponsiveContainer>
+  </div>
+
+  {/* ===== Bar Chart ===== */}
+  {/* <div className="bg-white rounded-2xl shadow p-6">
+    <h3 className="font-semibold mb-4">Monthly Payments</h3>
+
+    <ResponsiveContainer width="100%" height={250}>
+      <BarChart data={paymentChartData}>
+        <XAxis dataKey="month" />
+        <YAxis />
+        <Tooltip />
+        <Bar
+          dataKey="amount"
+          fill="#6366f1"   // indigo
+          radius={[6, 6, 0, 0]}
+          isAnimationActive={true}
+        />
+      </BarChart>
+    </ResponsiveContainer>
+  </div> */}
+
+</div>
     </div>
   );
 };

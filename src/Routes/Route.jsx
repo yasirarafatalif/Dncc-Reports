@@ -26,6 +26,11 @@ import DashboardLayout from "../LayOuts/DashboardLayout";
 import Dashboard from "../Pages/DashBoard/Dashboard";
 import About from "../Pages/About/About";
 import AllResolvedIssue from "../Pages/DashBoard/Admin/AllResolvedIssue";
+import AllRejectedIssue from "../Pages/DashBoard/Admin/AllRejectedIssue";
+import StaffResloved from "../Pages/DashBoard/Staff/StaffResloved";
+import PaymentsHistory from "../Pages/DashBoard/NormalUser/PaymentsHistory";
+import Contact from "../Pages/Contact/Contact";
+import CitizenRoute from "./CitizenRoute";
 
 export const router = createBrowserRouter([
    {
@@ -34,14 +39,14 @@ export const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {index: true , Component: Home},
-      // {path: '/register' , Component: Register},
       {path: '/register' , Component: Register},
       {path: '/login' , Component: LogIn},
       {path: '/about' , Component: About},
       {path: '/user-profile' , element: <PrivateRoute> <UserProfile></UserProfile></PrivateRoute>},
       {path: '/issue/:id' , element: <PrivateRoute> <IssueDetails></IssueDetails></PrivateRoute>},
-      {path: '/submit-issue' , element: <PrivateRoute><UserSubmitIssue></UserSubmitIssue> </PrivateRoute>},
-      { path:'/all-issue', element:  < AllIssueCard></AllIssueCard>}
+      {path: '/submit-issue' , element: <CitizenRoute><UserSubmitIssue></UserSubmitIssue> </CitizenRoute>},
+      { path:'/all-issue', element:  < AllIssueCard></AllIssueCard>},
+      { path:'/contact', element:  <Contact></Contact>}
      
     ]
 
@@ -53,18 +58,20 @@ export const router = createBrowserRouter([
     <DashboardLayout></DashboardLayout>
   </PrivateRoute>,
   children:[
+     {path:"/dashboard", Component: Dashboard},
     {path:'/dashboard/user-issue', Component: UserIssue},
-    {path:"/dashboard", Component: Dashboard},
-    {path:'/dashboard/payment-success', Component: IssueBostPayment},
-    {path:'/dashboard/user-subcription-payment-success', Component: UserSubcriptionSuccess},
+    {path:'/dashboard/payment-success', element: <CitizenRoute><IssueBostPayment></IssueBostPayment></CitizenRoute> },
+    {path:'/dashboard/user-subcription-payment-success', element:<CitizenRoute><UserSubcriptionSuccess></UserSubcriptionSuccess></CitizenRoute>  },
     {path:'/dashboard/admin-all-issue-manage', element: <AdminRoute> <AllIssueManage></AllIssueManage></AdminRoute>},
-    {path:'/dashboard/user-subcription', element:  <UserSubcription></UserSubcription>},
+    {path:'/dashboard/user-subcription', element:  <CitizenRoute><UserSubcription></UserSubcription></CitizenRoute>},
     {path:'/dashboard/admin-all-manage-staff', element: <AdminRoute><ManageStaff></ManageStaff></AdminRoute>},
-    {path:'/dashboard/apply-staff', Component: ApplyStaff},
     {path:'/dashboard/staff-accept-issue', element: <StaffRoute><AccepetIssue></AccepetIssue></StaffRoute>},
     {path:'/dashboard/manage-user', element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>},
     {path:'/dashboard/admin-all-resolved-issue-manage', element: <AdminRoute><AllResolvedIssue></AllResolvedIssue></AdminRoute>},
-    {path:'/dashboard/all-payments-info', element: <AdminRoute><AllPayments></AllPayments></AdminRoute>}
+    {path:'/dashboard/admin-all-rejected-issue-manage', element: <AdminRoute><AllRejectedIssue></AllRejectedIssue></AdminRoute>},
+    {path:'/dashboard/all-payments-info', element: <AdminRoute><AllPayments></AllPayments></AdminRoute>},
+    {path:'/dashboard/staff-resloved-issue', element: <StaffRoute><StaffResloved></StaffResloved></StaffRoute>},
+    {path:'/dashboard/payment-history', element: <CitizenRoute><PaymentsHistory></PaymentsHistory></CitizenRoute>}
   ]
 }
 ])

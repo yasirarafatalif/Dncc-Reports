@@ -23,12 +23,12 @@ const SocialLogIn = () => {
                             }
                         })
                         .catch(err=>{
-                            // console.log(err);
+                            
                         })
                 toast.success("You Are SuccessFully Create Account")
             })
             .catch(err => {
-                console.log(err);
+               
             })
     }
     return (

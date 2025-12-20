@@ -112,7 +112,7 @@ const UserIssue = () => {
                     }
 
                 } catch (error) {
-                    console.log(error);
+                    
                     Swal.fire({
                         title: "Error!",
                         text: "Something went wrong!",

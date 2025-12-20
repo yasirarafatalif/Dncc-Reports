@@ -1,4 +1,5 @@
 import { Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
+import Logo1 from "../../../Components/Shared/Logo1";
 
 const styles = StyleSheet.create({
   page: {
@@ -48,6 +49,7 @@ const InvoicePDF = ({ data }) => (
       <View style={styles.header}>
         <View>
           <Text style={styles.title}>INVOICE</Text>
+          <Text><Logo1></Logo1></Text>
           <Text>{data.company.name}</Text>
           <Text>{data.company.email}</Text>
           <Text>{data.company.phone}</Text>

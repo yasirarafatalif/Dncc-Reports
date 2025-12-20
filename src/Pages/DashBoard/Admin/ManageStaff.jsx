@@ -9,6 +9,7 @@ import { useForm } from 'react-hook-form';
 import { GrUpdate } from 'react-icons/gr';
 import { MdDelete } from 'react-icons/md';
 import axios from 'axios';
+import Spinar from '../../../Components/Shared/Spinar';
 
 const ManageStaff = () => {
   const { user, createUser, logOut } = useAuth();
@@ -16,13 +17,17 @@ const ManageStaff = () => {
   const axiosSecure = useAxios();
   const [selectedStaff, setselectedStaff] = useState([])
 
-  const { data: citizen, refetch } = useQuery({
+  const { data: citizen, refetch, isLoading } = useQuery({
     queryKey: ["staff_manage"],
     queryFn: async () => {
       const res = await axiosSecure.get("/user/cityzen?staffStatus=pending&role=Field Staff");
       return res.data;
     },
   });
+//     if (isLoading) {
+//   return <Spinar />;
+// }
+
 
   const handelApproved = (item, status, role) => {
     Swal.fire({
@@ -159,7 +164,7 @@ const handleDeleteStaff = (staff) => {
     }
 
   }
-  console.log(selectedStaff);
+
 
   return (
     <div className="p-6 min-h-screen bg-gray-200">

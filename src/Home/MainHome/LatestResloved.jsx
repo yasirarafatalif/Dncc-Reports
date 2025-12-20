@@ -12,7 +12,6 @@ const LatestResloved = () => {
         queryKey: ["latest-all-get-issue"],
         queryFn: async () => {
             const res = await axiosSecure.get('/latest-issue');
-            //   console.log(res.data);
             return res.data;
         },
     });

@@ -48,20 +48,20 @@ const Register = () => {
                                 }
                             })
                             .catch(err => {
-                                console.log(err);
+                                
                             })
                         updateUserProfile(data?.name, photoURl)
                             .then(() => {
 
                             })
                             .catch(err => {
-                                // console.log(err);
+                                
                             })
                     })
-                toast.success("You Are SuccessFully Create Account")
+               
             })
             .catch(err => {
-                console.log(err);
+                
             })
     }
     if (user) {
