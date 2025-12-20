@@ -51,9 +51,6 @@ const handelLikeUpdate = (issueId) => {
 };
 const isLiked = issue?.likedBy?.includes(user?.email);
 
-
-  
-
   return (
     <div>
       <title>All Issues</title>

@@ -1,16 +1,136 @@
-# React + Vite
+# 🏙️ Public Infrastructure Issue Reporting System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern digital platform that allows citizens to report public infrastructure issues (like broken roads, streetlights, garbage overflow, water leakage, etc.) and enables government admins & staff to manage, track, and resolve those issues efficiently.
 
-Currently, two official plugins are available:
+🔗 **Live Website:** https://your-live-site-link.web.app  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🔐 Admin Credentials (Demo)
+- **Email:** testadmin@gmail.com
+- **Password:** 123123  
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 👤 Demo User Credentials
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Citizen
+- **Email:** testuser1@gmail.com
+- **Password:** 123123  
+
+### Staff
+- **Email:** staff1@gmail.com
+- **Password:** 123123  
+
+---
+
+## 🚀 Key Features
+
+- Citizens can report public issues with image, category, priority & location
+- Role-based dashboards (Admin, Citizen, Staff)
+- Issue lifecycle tracking with timeline (Pending → In-Progress → Resolved → Closed)
+- Upvote system (one user = one upvote, no self-upvote)
+- Boost issue priority via payment (100৳ per boost)
+- Premium subscription for unlimited issue reporting
+- Staff assignment system (admin-only, one-time assign)
+- Real-time UI updates using **TanStack Query**
+- Secure authentication with Firebase (Email/Password & Google Sign-in)
+- Fully responsive UI (Mobile, Tablet & Desktop)
+- SweetAlert / Toast notifications for all CRUD actions
+- Search, filter & pagination on All Issues page
+- Downloadable PDF invoice for payments
+- Protected private routes (no logout on refresh)
+- Clean & modern UI built with Tailwind CSS & DaisyUI
+
+---
+
+## 🧭 Pages Overview
+
+### Public Pages
+- Home
+- All Issues
+- Issue Details (Private)
+- Login & Registration
+- 404 Not Found Page
+
+### Citizen Dashboard
+- Dashboard Overview (Stats & Charts)
+- My Issues (Edit/Delete/View)
+- Report Issue (Issue limit for free users)
+- Profile & Premium Subscription
+
+### Staff Dashboard
+- Assigned Issues
+- Change Issue Status
+- Issue Progress Updates
+- Staff Profile
+
+### Admin Dashboard
+- Dashboard Analytics
+- All Issues Management
+- Assign Staff
+- Reject Issues
+- Manage Citizens (Block/Unblock)
+- Manage Staff (Add/Update/Delete)
+- Payments & Invoices
+- Admin Profile
+
+---
+
+## 🛠️ Technologies Used
+
+### Frontend
+- React.js
+- React Router DOM
+- Tailwind CSS
+- DaisyUI
+- TanStack Query
+- Axios
+- Firebase Authentication
+- React Icons
+- SweetAlert2 / React Toastify
+- React PDF
+
+### Deployment
+- Firebase Hosting
+
+---
+
+## 🔒 Security & Best Practices
+
+- Environment variables used for Firebase config
+- Private routes with role-based access
+- Token verification with middleware
+- No sensitive data exposed on client-side
+- Clean & readable code structure
+
+---
+
+## 📂 GitHub Repositories
+
+- **Client Repo:** [https://github.com/your-username/issue-reporting-client](https://github.com/yasirarafatalif/Dncc-Reports.git)  
+- **Server Repo:** [https://github.com/your-username/issue-reporting-server](https://github.com/yasirarafatalif/Dncc-Reports-Server.git)  
+
+---
+
+## 📌 Important Notes
+
+- Free users can submit up to **3 issues**
+- Premium users can submit **unlimited issues**
+- Blocked users can log in but cannot perform actions
+- Each important action creates a **timeline record**
+- Boosted issues always appear above normal issues
+
+---
+
+## 🎯 Project Goal
+
+This project aims to:
+- Improve transparency in public issue management
+- Reduce response time for infrastructure problems
+- Provide a centralized tracking system for citizens
+- Make city service delivery more efficient
+
+---
+
+✨ **Thank you for visiting this project!**
