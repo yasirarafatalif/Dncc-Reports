@@ -2,7 +2,7 @@
 
 A modern digital platform that allows citizens to report public infrastructure issues (like broken roads, streetlights, garbage overflow, water leakage, etc.) and enables government admins & staff to manage, track, and resolve those issues efficiently.
 
-🔗 **Live Website:** [https://your-live-site-link.web.app ](https://nagoriksheba.netlify.app/) 
+🔗 **Live Website:** [https://nagoriksheba.netlify.app ](https://nagoriksheba.netlify.app) 
 
 ---
 
