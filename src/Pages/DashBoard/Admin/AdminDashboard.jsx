@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   BarChart,
   Bar,
@@ -15,6 +15,7 @@ import useAxios from "../../../Hooks/useAxios";
 import { CiCircleInfo } from "react-icons/ci";
 import Spinar from "../../../Components/Shared/Spinar";
 import useAuth from "../../../Hooks/useAuth";
+import AdminDashboardSkeleton from "../../../Components/Shared/AdminDashboardSkeleton";
 
 
 const AdminDashboard = () => {
@@ -28,8 +29,9 @@ const AdminDashboard = () => {
     },
   });
   
- if (loading|| isLoading) {
-  return <Spinar />;
+
+if (loading || isLoading ) {
+  return <AdminDashboardSkeleton />;
 }
 
   const pieColors = ["#22c55e", "#facc15", "#ef4444"]; 
@@ -54,18 +56,7 @@ const AdminDashboard = () => {
   return (
     <div className="min-h-screen bg-gray-100 p-6 space-y-6">
       <title>Admin Dashboard</title>
-      {/* STATS CARDS */}
-      {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
-        {stats.map((s, i) => (
-          <div
-            key={i}
-            className="bg-white rounded-2xl shadow p-4 hover:shadow-md transition"
-          >
-            <p className="text-sm text-gray-500">{s.title}</p>
-            <h2 className="text-2xl font-bold text-gray-800">{s.value}</h2>
-          </div>
-        ))}
-      </div> */}
+    
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
         {stats.map((s, i) => (
           <div
@@ -101,18 +92,7 @@ const AdminDashboard = () => {
       {/* LATEST DATA */}
    
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* <div className="bg-white rounded-2xl shadow p-6">
-          <h3 className="font-semibold mb-4">Latest Issues</h3>
-          <ul className="space-y-2">
-            {paymentInf?.latestIssue?.map((i, idx) => (
-              <li key={idx} className="flex justify-between text-sm">
-                <span>{i?.category}</span>
-                <span className="font-medium">{i?.status}</span>
-              </li>
-            ))}
-          </ul>
-        </div> */}
-
+        {/* ===== Issues Card ===== */}
         <div className="relative overflow-hidden bg-gradient-to-br from-amber-50 via-orange-50 to-white rounded-2xl shadow-xl p-6 border border-amber-100/50">
           {/* Decorative background elements */}
           <div className="absolute top-0 right-0 w-36 h-36 bg-orange-200/20 rounded-full blur-3xl -z-10"></div>
@@ -495,24 +475,6 @@ const AdminDashboard = () => {
     </ResponsiveContainer>
   </div>
 
-  {/* ===== Bar Chart ===== */}
-  {/* <div className="bg-white rounded-2xl shadow p-6">
-    <h3 className="font-semibold mb-4">Monthly Payments</h3>
-
-    <ResponsiveContainer width="100%" height={250}>
-      <BarChart data={paymentChartData}>
-        <XAxis dataKey="month" />
-        <YAxis />
-        <Tooltip />
-        <Bar
-          dataKey="amount"
-          fill="#6366f1"   // indigo
-          radius={[6, 6, 0, 0]}
-          isAnimationActive={true}
-        />
-      </BarChart>
-    </ResponsiveContainer>
-  </div> */}
 
 </div>
     </div>

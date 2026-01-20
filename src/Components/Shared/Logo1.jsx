@@ -1,34 +1,24 @@
-import React from 'react';
-import logoImg from '/logodemo.png'
+import React from "react";
 
 const Logo1 = () => {
-    return (
-        <div>
+  return (
+    <div className="flex justify-center items-center">
+      <div className="flex items-center gap-1">
+        
+        {/* N Letter */}
+        <span className="text-4xl font-extrabold text-[#aa84fc] italic drop-shadow-sm">
+          N
+        </span>
 
-            <div className='flex justify-center items-center'>
+        {/* Brand Name */}
+        <span className="text-3xl font-bold tracking-wide  text-[#475669] font-[Poppins]">
+          agorik
+          <span className="text-[#aa84fc]">Sheba</span>
+        </span>
 
-
-
-                <div>
-                    <img
-                        className='w-[70px] h-[60px]'
-                        src={logoImg} alt="" srcset="" />
-                </div>
-                <div className='mt-3'>
-
-                    <span className="text-[#475669] text-3xl font-bold font-[Poppins] italic">
-                        agorikSheba
-                    </span>
-
-                </div>
-
-
-            </div>
-
-
-
-        </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default Logo1;

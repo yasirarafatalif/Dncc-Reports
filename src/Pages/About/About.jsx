@@ -3,11 +3,11 @@ import { FaCity, FaTools, FaUserCheck, FaChartLine } from "react-icons/fa";
 
 const About = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
+    <div className="min-h-screen bg-gbase-200">
       {/* HERO SECTION */}
       <section className="relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 py-20 text-center">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-secondary leading-tight">
             Building Smarter Cities,
             <span className="block text-blue-600">Together</span>
           </h1>

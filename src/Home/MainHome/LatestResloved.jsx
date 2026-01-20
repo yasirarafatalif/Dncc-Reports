@@ -41,7 +41,7 @@ const LatestResloved = () => {
 //   const isLiked = issue?.likedBy?.includes(user?.email);
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-base-100 ">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-14">

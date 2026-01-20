@@ -2,14 +2,17 @@ import React from 'react';
 import toast from 'react-hot-toast';
 
 const Contact = () => {
+  const handelMassage=()=>{
+    toast.success("You Massage Has benn set")
+  }
    
   return (
-    <div className="min-h-screen bg-gray-100 py-10 px-4">
+    <div className="min-h-screen bg-base-200 py-10 px-4">
       <title>Contact</title>
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-10">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-800">Contact Us</h1>
+          <h1 className="text-3xl md:text-4xl font-bold text-primary">Contact Us</h1>
           <p className="mt-3 text-gray-600 max-w-2xl mx-auto">
             Have a question, suggestion, or need help with reporting a public issue?
             Reach out to us — we are here to help improve municipal services.
@@ -19,7 +22,7 @@ const Contact = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Contact Info */}
           <div className="bg-white rounded-2xl shadow p-6">
-            <h2 className="text-xl font-semibold mb-4 text-gray-800">Get in Touch</h2>
+            <h2 className="text-xl font-semibold mb-4 text-secondary ">Get in Touch</h2>
 
             <div className="space-y-4 text-gray-600">
               <div>
@@ -49,7 +52,7 @@ const Contact = () => {
             <h2 className="text-xl font-semibold mb-4 text-gray-800">Send Us a Message</h2>
 
             <form
-            onClick={()=> toast.success("You Massage Has benn set")}
+            
             className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700">Full Name</label>
@@ -83,12 +86,14 @@ const Contact = () => {
                 <textarea
                   rows="4"
                   placeholder="Write your message..."
-                  className="textarea textarea-bordered w-full"
+                  className="textarea textarea-bordered  w-full"
                 ></textarea>
               </div>
 
               <button
                 type="submit"
+                  onClick={handelMassage}
+                // onClick={()=> toast.success("You Massage Has benn set")}
                 className="w-full py-2 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition"
               >
                 Send Message

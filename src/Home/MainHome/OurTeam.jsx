@@ -25,7 +25,7 @@ const OurTeam = () => {
     ];
 
     return (
-        <section className="bg-[#faf7f2] py-20 px-6">
+        <section className="bg-base-100 py-20 px-6">
             <div className="max-w-7xl mx-auto">
                 {/* Header */}
                 <div className="flex flex-col lg:flex-row justify-between items-start mb-14 gap-6">

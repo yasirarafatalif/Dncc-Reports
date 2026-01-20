@@ -4,7 +4,7 @@ import Logo1 from "../Shared/Logo1";
 
 const Footer = () => {
   return (
-    <footer className="bg-base-200 text-base-content">
+    <footer className="bg-base-100 text-base-content">
       <div className="footer max-w-7xl mx-auto p-10 grid-cols-1 md:grid-cols-4">
 
         {/* ===== Brand ===== */}

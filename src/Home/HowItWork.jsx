@@ -36,11 +36,11 @@ const steps = [
 
 const HowItWork = () => {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-base-100">
       <div className="max-w-7xl  mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">
+          <h2 className="text-4xl font-bold text-secondary mb-4">
             How It Works
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">

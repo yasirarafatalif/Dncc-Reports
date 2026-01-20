@@ -7,6 +7,7 @@ import { CiCircleCheck } from "react-icons/ci";
 import Spinar from "../../Components/Shared/Spinar";
 import { AiOutlineLike } from "react-icons/ai";
 import toast from "react-hot-toast";
+import IssueCardSkeleton from "../../Components/Shared/IssueCardSkeleton";
 
 const AllIssueCard = () => {
   const { user } = useAuth();
@@ -14,7 +15,7 @@ const AllIssueCard = () => {
   const axiosSecure = useAxios();
 
   const [currentPage, setCurrentPage] = useState(1);
-  const limit = 5;
+  const limit = 6;
 
   const { data: issue = [], isLoading, refetch } = useQuery({
     queryKey: ["all_issue", currentPage],
@@ -26,9 +27,21 @@ const AllIssueCard = () => {
     },
     // keepPreviousData: true,
   });
+
+  // if (isLoading) {
+  //   return <Spinar />;
+  // }
+
   if (isLoading) {
-    return <Spinar />;
-  }
+  return (
+    <div className="grid bg-base-200 grid-cols-1 md:grid-cols-3 gap-6 p-6">
+      {[...Array(6)].map((_, i) => (
+        <IssueCardSkeleton key={i} />
+      ))}
+    </div>
+  );
+}
+
 
 
 const handelLikeUpdate = (issueId) => {
