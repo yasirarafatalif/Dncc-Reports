@@ -2,6 +2,8 @@ import React, { useRef, useState } from "react";
 import useAxios from "../../../Hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import AllIssueManageSkeleton from "../../../Components/Shared/AllIssueManageSkeleton";
+import Spinar from "../../../Components/Shared/Spinar";
 
 const AllIssueManage = () => {
   const axiosSecure = useAxios();
@@ -9,13 +11,17 @@ const AllIssueManage = () => {
   const [selectedpercel, setselectedpercel] = useState(null);
   const [selectedStaff, setSelectedStaff] = useState(null);
 
-  const { data: issue = [], refetch } = useQuery({
+  const { data: issue = [], refetch,isLoading } = useQuery({
     queryKey: ["all_issue"],
     queryFn: async () => {
       const res = await axiosSecure.get("/all-issue");
       return res.data;
     },
   });
+
+//     if (isLoading) {
+//   return <Spinar></Spinar>
+// }
 
   const {
     data: staffs = [],
@@ -29,6 +35,8 @@ const AllIssueManage = () => {
       return res.data;
     },
   });
+
+
 
   const openAssignModal = (percel) => {
     setselectedpercel(percel);

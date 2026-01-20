@@ -25,9 +25,15 @@ import useAuth from "../Hooks/useAuth";
 import Dashboard from "./../Pages/DashBoard/Dashboard";
 import Logo1 from "../Components/Shared/Logo1";
 import toast from "react-hot-toast";
+import DashboardSidebarSkeleton from "../Components/Shared/DashboardSidebarSkeleton";
 
 const DashboardLayout = () => {
-  const { role } = useRole();
+  const { role,roleLoading } = useRole();
+  // if (roleLoading) {
+  //   return <DashboardSidebarSkeleton></DashboardSidebarSkeleton>;
+  // }
+
+
   const { user, logOut } = useAuth();
   const naviget = useNavigate();
   const handelLogOut = () => {
