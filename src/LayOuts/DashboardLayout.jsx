@@ -29,9 +29,7 @@ import DashboardSidebarSkeleton from "../Components/Shared/DashboardSidebarSkele
 
 const DashboardLayout = () => {
   const { role,roleLoading } = useRole();
-  // if (roleLoading) {
-  //   return <DashboardSidebarSkeleton></DashboardSidebarSkeleton>;
-  // }
+  
 
 
   const { user, logOut } = useAuth();
@@ -46,6 +44,9 @@ const DashboardLayout = () => {
         
       });
   };
+  if (roleLoading) {
+    return <DashboardSidebarSkeleton></DashboardSidebarSkeleton>;
+  }
 
   return (
     // <div className="drawer lg:drawer-open">

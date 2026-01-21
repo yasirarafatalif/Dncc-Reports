@@ -2,7 +2,7 @@ import React from 'react';
 
 const IssueCardSkeleton = () => {
   return (
-    <div className="bg-base-100 rounded-2xl shadow-lg overflow-hidden animate-pulse">
+    <div className="bg-white rounded-2xl shadow-lg overflow-hidden animate-pulse">
       
       {/* Image skeleton */}
       <div className="h-52 bg-base-300"></div>

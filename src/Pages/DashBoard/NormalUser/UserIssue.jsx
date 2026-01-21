@@ -4,6 +4,8 @@ import { useQuery } from '@tanstack/react-query';
 import useAuth from '../../../Hooks/useAuth';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router';
+import AdminDashboardSkeleton from '../../../Components/Shared/AdminDashboardSkeleton';
+import AllIssueManageSkeleton from '../../../Components/Shared/AllIssueManageSkeleton';
 
 const UserIssue = () => {
 
@@ -18,7 +20,7 @@ const UserIssue = () => {
     const categoryRef = useRef();
     const [selectedpercel, setselectedpercel] = useState(null)
 
-    const { data: issue = [], refetch } = useQuery({
+    const { data: issue = [], refetch,isLoading } = useQuery({
         queryKey: ['user-all-issue-details', user?.email],
         enabled: !!user?.email,
         queryFn: async () => {
@@ -122,6 +124,10 @@ const UserIssue = () => {
             }
         });
     };
+
+    if(isLoading){
+   return  <AllIssueManageSkeleton />;
+  }
 
 
     return (

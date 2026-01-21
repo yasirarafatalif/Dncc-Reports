@@ -15,7 +15,7 @@ const AllIssueCard = () => {
   const axiosSecure = useAxios();
 
   const [currentPage, setCurrentPage] = useState(1);
-  const limit = 6;
+  const limit = 8;
 
   const { data: issue = [], isLoading, refetch } = useQuery({
     queryKey: ["all_issue", currentPage],
@@ -34,8 +34,8 @@ const AllIssueCard = () => {
 
   if (isLoading) {
   return (
-    <div className="grid bg-base-200 grid-cols-1 md:grid-cols-3 gap-6 p-6">
-      {[...Array(6)].map((_, i) => (
+    <div className="grid bg-base-200 grid-cols-1 md:grid-cols-4 gap-6 p-6">
+      {[...Array(8)].map((_, i) => (
         <IssueCardSkeleton key={i} />
       ))}
     </div>
@@ -71,13 +71,16 @@ const isLiked = issue?.likedBy?.includes(user?.email);
   return (
     <div>
       <title>All Issues</title>
-      <div className="grid bg-[#f8f8f8] grid-cols-1 md:grid-cols-3 gap-6 p-6">
+      <div className="grid bg-base-200 grid-cols-1 md:grid-cols-4 gap-6 p-6">
         {issue?.issues?.map((issue, index) => {
           return (
             <div
               key={issue._id}
               data-aos="zoom-in"
-              className="group hover:cursor-pointer relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden hover:-translate-y-2"
+              className="group hover:cursor-pointer relative bg-base-100  border border-blue-200  
+                hover:border-blue-400
+  hover:shadow-[0_8px_25px_rgba(59,130,246,0.15)
+              shadow-2xl rounded-2xl  hover:shadow-2xl transition-all duration-500 overflow-hidden hover:-translate-y-2"
               style={{
                 animation: `fadeInUp 0.5s ease-out ${index * 0.1}s both`,
               }}
@@ -105,7 +108,7 @@ const isLiked = issue?.likedBy?.includes(user?.email);
 
                 {/* Category badge */}
                 <div className="absolute top-4 left-4">
-                  <span className="inline-flex items-center gap-1 px-3 py-2 text-xs font-semibold rounded-full bg-white/90 text-gray-700 backdrop-blur-sm shadow-lg">
+                  <span className="inline-flex items-center gap-1 px-3 py-2 text-xs font-semibold rounded-full bg-white/90 text-secondary backdrop-blur-sm shadow-lg">
                     <svg
                       className="w-3.5 h-3.5"
                       fill="none"
@@ -127,7 +130,7 @@ const isLiked = issue?.likedBy?.includes(user?.email);
               {/* Content */}
               <div className="p-6">
                 {/* Title */}
-                <h3 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 transition-all line-clamp-2">
+                <h3 className="text-xl font-bold text-secondary mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 transition-all line-clamp-2">
                   {issue.title}
                 </h3>
 

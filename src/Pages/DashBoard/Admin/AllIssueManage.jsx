@@ -19,9 +19,7 @@ const AllIssueManage = () => {
     },
   });
 
-//     if (isLoading) {
-//   return <Spinar></Spinar>
-// }
+
 
   const {
     data: staffs = [],
@@ -98,6 +96,10 @@ const AllIssueManage = () => {
         });
     });
   };
+
+      if (isLoading) {
+  return <AllIssueManageSkeleton></AllIssueManageSkeleton>
+}
 
   return (
     <div className="bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50 p-6 min-h-screen">
@@ -258,7 +260,7 @@ const AllIssueManage = () => {
           <table className="table w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr className="text-xs uppercase tracking-wider">
-                <th className="text-gray-600 font-bold p-4">#</th>
+                <th className="text-gray-600 font-bold p-4">SL No</th>
                 <th className="text-gray-600 font-bold p-4">
                   <div className="flex items-center gap-2">
                     <svg

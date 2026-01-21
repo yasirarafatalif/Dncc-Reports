@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import useAxios from '../../../Hooks/useAxios';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router';
+import AllIssueManageSkeleton from '../../../Components/Shared/AllIssueManageSkeleton';
 
 const AllRejectedIssue = () => {
     const axiosSecure=useAxios();
@@ -12,11 +13,7 @@ const AllRejectedIssue = () => {
       return res.data;
     },
   });
-  if(isLoading){
-    <div className="flex items-center justify-center h-screen">
-        <div className="animate-spin w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full"></div>
-      </div>
-  }
+ 
 
    const [filters, setFilters] = useState({
     priority: "",
@@ -29,6 +26,10 @@ const AllRejectedIssue = () => {
         (!filters.category || item.category === filters.category)
       );
     });
+
+     if(isLoading){
+   return < AllIssueManageSkeleton></AllIssueManageSkeleton>
+  }
   
     return (
  <div className="bg-gradient-to-br from-gray-50 to-gray-100 p-6 min-h-screen">

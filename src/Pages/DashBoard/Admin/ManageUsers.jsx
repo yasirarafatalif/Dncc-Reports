@@ -4,13 +4,14 @@ import { useNavigate } from "react-router";
 import useAxios from "../../../Hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import AllIssueManageSkeleton from "../../../Components/Shared/AllIssueManageSkeleton";
 
 const ManageUsers = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const axiosSecure = useAxios();
 
-  const { data: citizen, refetch } = useQuery({
+  const { data: citizen, refetch, isLoading } = useQuery({
     queryKey: ["cityzen_manage"],
     queryFn: async () => {
       const res = await axiosSecure.get("/user/cityzen?role=citizen");
@@ -70,6 +71,10 @@ const ManageUsers = () => {
     return emailMatch && typeMatch;
   });
 
+
+   if(isLoading){
+   return < AllIssueManageSkeleton></AllIssueManageSkeleton>
+  }
   return (
     <div className="p-5">
       <title>All Manage Users</title>

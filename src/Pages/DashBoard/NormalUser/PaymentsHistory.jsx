@@ -5,6 +5,8 @@ import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import useAuth from "../../../Hooks/useAuth";
 import Spinar from "../../../Components/Shared/Spinar";
+import AdminDashboardSkeleton from "../../../Components/Shared/AdminDashboardSkeleton";
+import AllIssueManageSkeleton from "../../../Components/Shared/AllIssueManageSkeleton";
 
 const PaymentsHistory = () => {
   const navigate = useNavigate();
@@ -21,7 +23,7 @@ const PaymentsHistory = () => {
       return res.data;
     },
   });
-  if(isLoading)<Spinar></Spinar>
+
 
 
 
@@ -47,6 +49,10 @@ const PaymentsHistory = () => {
     });
   };
 
+
+    if(isLoading){
+   return  <AllIssueManageSkeleton />;
+  }
   return (
     <div className="p-6 bg-gray-50 min-h-screen">
       <title>User Payments History</title>

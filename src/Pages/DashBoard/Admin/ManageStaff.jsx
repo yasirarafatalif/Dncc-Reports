@@ -10,6 +10,7 @@ import { GrUpdate } from 'react-icons/gr';
 import { MdDelete } from 'react-icons/md';
 import axios from 'axios';
 import Spinar from '../../../Components/Shared/Spinar';
+import StaffTableSkeleton from '../../../Components/Shared/StaffTableSkeleton';
 
 const ManageStaff = () => {
   const { user, createUser, logOut } = useAuth();
@@ -24,9 +25,7 @@ const ManageStaff = () => {
       return res.data;
     },
   });
-//     if (isLoading) {
-//   return <Spinar />;
-// }
+
 
 
   const handelApproved = (item, status, role) => {
@@ -163,6 +162,10 @@ const handleDeleteStaff = (staff) => {
       updateModalRef.current.close();
     }
 
+  }
+
+  if(isLoading){
+    return <StaffTableSkeleton></StaffTableSkeleton>
   }
 
 

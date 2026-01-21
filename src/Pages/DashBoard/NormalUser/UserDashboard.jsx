@@ -4,13 +4,14 @@ import useAuth from '../../../Hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
 import { CiCircleInfo } from 'react-icons/ci';
+import AdminDashboardSkeleton from '../../../Components/Shared/AdminDashboardSkeleton';
 
 const UserDashboard = () => {
 
   const axiosSecure = useAxios();
   const { user } = useAuth();
 
-  const { data: paymentInf = [] } = useQuery({
+  const { data: paymentInf = [],isLoading } = useQuery({
     queryKey: ["citizen-all-get-issue"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/citizen-dashboard?email=${user.email}`);
@@ -36,6 +37,12 @@ const UserDashboard = () => {
     { title: "Rejected Issues", value: paymentInf?.rejectedIssues },
     { title: "Total Payment", value: paymentInf?.totalPayments },
   ];
+
+  if ( isLoading ) {
+  return <AdminDashboardSkeleton />;
+}
+
+
 
 
 const COLORS = ["#22c55e", "#facc15", "#ef4444"]; 

@@ -87,7 +87,7 @@ const IssueDetails = () => {
   if (!issue) return <Spinar />;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 py-10 px-4 flex justify-center">
+    <div className="min-h-screen bg-base-200 py-10 px-4 flex justify-center">
       <title>Issue Detalis</title>
       <div
         className="max-w-5xl w-full space-y-6"
@@ -96,7 +96,7 @@ const IssueDetails = () => {
         {/* Back Button */}
         <button
           onClick={() => navigate(-1)}
-          className="group flex items-center gap-2 text-gray-600 hover:text-blue-600 font-medium transition-colors"
+          className="group flex items-center gap-2 text-secondary hover:text-blue-600 font-medium transition-colors"
         >
           <svg
             className="w-5 h-5 transform group-hover:-translate-x-1 transition-transform"

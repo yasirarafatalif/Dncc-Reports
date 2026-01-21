@@ -48,7 +48,7 @@ const IssueDetailsPreview = () => {
   const canBoost = !issue.isBoosted;
 
   return (
-    <div className="min-h-screen bg-gray-100 py-10 px-4 flex justify-center">
+    <div className="min-h-screen bg-base-200 py-10 px-4 flex justify-center">
       <div className="max-w-4xl w-full space-y-8">
         <div className="bg-white shadow-lg rounded-xl p-6">
           <h1 className="text-3xl font-bold text-gray-800">{issue.title}</h1>

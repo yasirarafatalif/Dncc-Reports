@@ -4,6 +4,7 @@ import useAxios from "../../../Hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 import MonthlyPaymentChart from "../../../Components/BarChartComponents/MonthlyPaymentChart";
 import Swal from "sweetalert2";
+import AllIssueManageSkeleton from "../../../Components/Shared/AllIssueManageSkeleton";
 
 const AllPayments = () => {
   const navigate = useNavigate();
@@ -20,9 +21,7 @@ const AllPayments = () => {
     },
   });
   if(isLoading){
-    <div className="flex items-center justify-center h-screen">
-        <div className="animate-spin w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full"></div>
-      </div>
+   return < AllIssueManageSkeleton></AllIssueManageSkeleton>
   }
 
 
