@@ -6,6 +6,8 @@ import "./Navbar.css";
 import Logo from "../Shared/Logo";
 import Logo1 from "../Shared/Logo1";
 
+import { MdOutlineWbSunny } from "react-icons/md";
+
 const Navbar = () => {
   const { user, logOut } = useAuth();
   const handelLogOut = () => {
@@ -108,34 +110,32 @@ const handleToggle = (e) => {
           </ul>
         </div>
         <div className="navbar-end gap-2 ">
-          {
-             <label className="swap swap-rotate">
-      {/* checkbox */}
-      <input
-        type="checkbox"
-        onChange={handleToggle}
-        checked={theme === "dark"}
-      />
+         {
+      <label className="swap swap-rotate w-12 h-12 bg-base-200 rounded-2xl shadow-sm hover:bg-base-300 transition-all duration-300 border border-base-300 hover:scale-110 active:scale-95">
+    {/* Checkbox hidden properly */}
+    <input
+      type="checkbox"
+      className="hidden"
+      onChange={handleToggle}
+      checked={theme === "dark"}
+    />
 
-      {/* sun icon (light) */}
-      <svg
-        className="swap-on h-10 w-10 fill-current"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-      >
-        <path d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM12,6.5A5.5,5.5,0,1,0,17.5,12A5.51,5.51,0,0,0,12,6.5Z" />
-      </svg>
+    {/* Sun Icon (Light Mode) */}
 
-      {/* moon icon (dark) */}
-      <svg
-        className="swap-off h-10 w-10 fill-current"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-      >
-        <path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36A10.14,10.14,0,1,0,22,14.05A1,1,0,0,0,21.64,13Z" />
-      </svg>
-    </label>
-          }
+    <MdOutlineWbSunny className="swap-on h-7 w-7 fill-amber-500 transition-transform duration-500" />
+  
+
+    {/* Moon Icon (Dark Mode) */}
+    <svg
+      className="swap-off h-7 w-7 fill-blue-500 transition-transform duration-500"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36A10.14,10.14,0,1,0,22,14.05A1,1,0,0,0,21.64,13Z" />
+    </svg>
+  </label>
+
+         }
           {user ? (
             <div className="dropdown dropdown-end">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">

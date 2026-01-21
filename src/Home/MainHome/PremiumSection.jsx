@@ -123,7 +123,7 @@ const PremiumBoost = () => {
                   </p>
                   <div className="flex items-baseline gap-2">
                     <h3 className="text-6xl font-black text-white tracking-tighter">
-                      ৳499
+                      ৳1000
                     </h3>
                     <span className="text-[#4ade80] font-bold">/year</span>
                   </div>

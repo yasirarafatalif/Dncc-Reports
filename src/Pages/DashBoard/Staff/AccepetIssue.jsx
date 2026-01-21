@@ -4,13 +4,14 @@ import { Link, useNavigate } from 'react-router';
 import useAxios from '../../../Hooks/useAxios';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
+import AllIssueManageSkeleton from '../../../Components/Shared/AllIssueManageSkeleton';
 
 const AccepetIssue = () => {
     const { user } = useAuth();
     const navigate = useNavigate();
     const axiosSecure = useAxios();
 
-    const { data: citizen = [], refetch } = useQuery({
+    const { data: citizen = [], refetch,isLoading } = useQuery({
         queryKey: ["staff_accepe_issue"],
         queryFn: async () => {
             const res = await axiosSecure.get(`/all-issue/email?userEmail=${user?.email}`);
@@ -65,6 +66,10 @@ const AccepetIssue = () => {
             (searchText === "" || item.title.toLowerCase().includes(searchText.toLowerCase()))
         );
     });
+
+        if (isLoading ) {
+    return <AllIssueManageSkeleton></AllIssueManageSkeleton>
+  }
 
 
     return (

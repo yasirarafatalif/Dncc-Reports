@@ -5,6 +5,7 @@ import useAxios from '../../../Hooks/useAxios';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 import Spinar from '../../../Components/Shared/Spinar';
+import AllIssueManageSkeleton from '../../../Components/Shared/AllIssueManageSkeleton';
 
 const StaffResloved = () => {
     const { user ,loading} = useAuth();
@@ -18,9 +19,8 @@ const StaffResloved = () => {
             return res.data;
         },
     });
-  //   if (isLoading || loading) {
-  //   return <Spinar></Spinar>
-  // }
+
+
   
 
 
@@ -35,7 +35,9 @@ const StaffResloved = () => {
             (searchText === "" || item.title.toLowerCase().includes(searchText.toLowerCase()))
         );
     });
-
+    if (isLoading ) {
+    return <AllIssueManageSkeleton></AllIssueManageSkeleton>
+  }
 
     return (
         <div className="p-5">

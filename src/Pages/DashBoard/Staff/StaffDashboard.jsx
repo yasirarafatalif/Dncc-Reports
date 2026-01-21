@@ -13,6 +13,7 @@ import useAxios from "../../../Hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../Hooks/useAuth";
 import Spinar from '../../../Components/Shared/Spinar';
+import AdminDashboardSkeleton from "../../../Components/Shared/AdminDashboardSkeleton";
 
 const COLORS = ["#facc15", "#22c55e", "#ef4444", "#0000FF"];
 
@@ -38,7 +39,7 @@ const StaffDashboard = () => {
     </div>
   );
   if (isLoading || loading) {
-    return <Spinar></Spinar>
+    return <AdminDashboardSkeleton></AdminDashboardSkeleton>
   }
 
 
