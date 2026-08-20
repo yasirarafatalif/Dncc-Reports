@@ -7,7 +7,7 @@ A modern digital platform that allows citizens to report public infrastructure i
 ---
 
 ## 🔐 Admin Credentials (Demo)
-- **Email:** testadmin@gmail.com
+- **Email:** testadmin@gmail.
 - **Password:** 123123  
 
 ---
