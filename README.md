@@ -15,7 +15,7 @@ A modern digital platform that allows citizens to report public infrastructure i
 ## 👤 Demo User Credentials
 
 ### Citizen
-- **Email:** testuser1@gmail.com
+- **Email:** testuser@gmail.com
 - **Password:** 123123  
 
 ### Staff
